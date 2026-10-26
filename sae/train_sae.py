@@ -31,6 +31,7 @@ def parse_args():
     p.add_argument("--steps", type=int, default=12500)
     p.add_argument("--lr", type=float, default=3e-4)
     p.add_argument("--log-every", type=int, default=50)
+    p.add_argument("--save-every", type=int, default=0, help="0 = only final save")
     p.add_argument("--seed", type=int, default=20261026)
     return p.parse_args()
 
@@ -151,6 +152,10 @@ def main():
             print(json.dumps(rec), flush=True)
             with open(log_path, "a") as f:
                 f.write(json.dumps(rec) + "\n")
+        if args.save_every and step % args.save_every == 0:
+            ck = os.path.join(args.out_dir, f"sae_{args.layer_label}_step{step}")
+            sae.save_to_disk(ck)
+            print("checkpoint", ck, flush=True)
     ckpt = os.path.join(args.out_dir, f"sae_{args.layer_label}_final")
     sae.save_to_disk(ckpt)
     print("saved", ckpt, flush=True)
