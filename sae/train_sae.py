@@ -43,6 +43,18 @@ def load_scales(path):
     return d  # caller filters by layer
 
 
+def load_scales_vec(scale_parquet, layer_id, d_model=D_MODEL_MLP):
+    """Per-neuron normalization scale for one layer (max(scale, 1e-4))."""
+    t = pq.read_table(scale_parquet)
+    lay = t.column("layer").to_numpy()
+    neu = t.column("neuron").to_numpy()
+    scl = t.column("scale").to_numpy()
+    vec = np.full(d_model, 1e-4, dtype=np.float32)
+    sel = lay == layer_id
+    vec[neu[sel]] = np.maximum(scl[sel].astype(np.float32), 1e-4)
+    return vec
+
+
 def batches(parquet_path, batch_tokens, scales_by_neuron=None):
     """Yield dense fp32 CPU batches [B, 27648]; 64 rows per token."""
     pf = pq.ParquetFile(parquet_path)
@@ -99,14 +111,8 @@ def main():
     layer_id = int(m) if m.isdigit() else None
     scale_vec = None
     if layer_id is not None and os.path.exists(args.scale_parquet):
-        t = pq.read_table(args.scale_parquet)
-        lay = t.column("layer").to_numpy()
-        neu = t.column("neuron").to_numpy()
-        scl = t.column("scale").to_numpy()
-        scale_vec = np.full(D_MODEL_MLP, 1e-4, dtype=np.float32)
-        sel = lay == layer_id
-        scale_vec[neu[sel]] = np.maximum(scl[sel].astype(np.float32), 1e-4)
-        print(f"loaded {int(sel.sum())} scales for layer {layer_id}", flush=True)
+        scale_vec = load_scales_vec(args.scale_parquet, layer_id)
+        print(f"loaded {int((scale_vec > 1e-4).sum())} scales for layer {layer_id}", flush=True)
 
     cfg = SparseCoderConfig(activation="topk", num_latents=args.n_latents, k=args.k,
                             normalize_decoder=True)
