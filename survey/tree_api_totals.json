@@ -1,0 +1,28 @@
+{
+ "total_bytes": 411904202313,
+ "n_files": 1062,
+ "n_dirs": 1057,
+ "pages": 22,
+ "per_prefix": {
+  ".gitattributes": [
+   1,
+   2504
+  ],
+  "README.md": [
+   1,
+   10918
+  ],
+  "pilot/fineweb-10m-sparse": [
+   82,
+   271342178390
+  ],
+  "pilot/fineweb-1m": [
+   489,
+   107805179942
+  ],
+  "pilot/stage-a-100k": [
+   489,
+   32756830559
+  ]
+ }
+}

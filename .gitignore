@@ -5,3 +5,8 @@
 .beads-credential-key
 .beads/proxieddb/
 *.gate.lock*
+
+# big data — never commit the atlas itself
+data/pilot/**
+data/*.log
+.venv-*/
