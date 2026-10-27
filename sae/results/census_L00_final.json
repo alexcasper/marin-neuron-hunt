@@ -1,0 +1,27 @@
+{
+ "ckpt": "/home/dusk/marin-sae/runs/L00-pilot/sae_L00_final",
+ "tokens_sampled": 400384,
+ "fvu_sampled": 0.740557359072319,
+ "alive_latents": 27249,
+ "alive_frac": 0.8316,
+ "n_latents": 32768,
+ "max_feat_act": 9.1875,
+ "max_feat_idx": 6219,
+ "p99_feat_max_act": 4.46875,
+ "freq_deciles_alive": [
+  5e-06,
+  1e-05,
+  1.7e-05,
+  3e-05,
+  4.5e-05,
+  7.5e-05,
+  0.000155,
+  0.000492,
+  0.001893
+ ],
+ "freq_mean_alive": 0.001174,
+ "freq_p99_alive": 0.020709,
+ "freq_max": 0.999356,
+ "freq_max_idx": 6219,
+ "freq_top100_share": 0.2799
+}
