@@ -32,6 +32,7 @@ def parse_args():
     p.add_argument("--lr", type=float, default=3e-4)
     p.add_argument("--log-every", type=int, default=50)
     p.add_argument("--save-every", type=int, default=0, help="0 = only final save")
+    p.add_argument("--init-from", default=None, help="ckpt dir (Sae.load_from_disk) to warm-start from")
     p.add_argument("--seed", type=int, default=20261026)
     return p.parse_args()
 
@@ -117,6 +118,11 @@ def main():
     cfg = SparseCoderConfig(activation="topk", num_latents=args.n_latents, k=args.k,
                             normalize_decoder=True)
     sae = Sae(d_in=D_MODEL_MLP, cfg=cfg, device=dev, dtype=torch.bfloat16)
+    if args.init_from:
+        warm = Sae.load_from_disk(os.path.expanduser(args.init_from), device=dev)
+        sae.load_state_dict(warm.state_dict())
+        del warm
+        print(f"warm-started from {args.init_from}", flush=True)
     opt = torch.optim.AdamW(sae.parameters(), lr=args.lr, betas=(0.9, 0.95), eps=1e-8)
     n_params = sum(p.numel() for p in sae.parameters())
     print(f"sae params: {n_params/1e6:.0f}M ({n_params*4/2**30:.1f} GiB fp32 + 2x Adam moments)", flush=True)

@@ -63,7 +63,23 @@ the first 20 steps; GPU busy 100%.
 
 ## Transfer state
 
-- rsync dawn→dusk `fineweb-10m-sparse` (271 GB): 106 MB/s sustained,
-  retry-wrapped (`transfer-logs/rsync-retry.sh`), resumes with --partial.
+- rsync dawn→dusk `fineweb-10m-sparse`: **COMPLETE 2026-10-27** — 253G, 82 files,
+  both sides identical (size-only dry-run diff empty). The "384G" figure was
+  `data/pilot/` total on dawn (fineweb-10m-sparse 253G + stage-a-100k 31G +
+  fineweb-1m 101G); only fineweb-10m-sparse was in scope for dusk.
+- Layer-00 pilot consumed the first 393,216,000 file rows (6,144,000 tokens) of
+  `layer00-tokensorted.parquet`; top-up slice `layer00-topup.parquet` (1.3G,
+  3,851,502 tokens, cut at token_idx >= 6147001) covers the unseen remainder —
+  pilot + top-up = exactly one epoch of layer 00.
 - Globus SDK path: blocked on one human consent click; recipe in
   `docs/globus-consent-recipe.md` (do NOT retry unattended).
+
+## Queue state (2026-10-27)
+
+- Census + top-up chain: `runs/L00-extend` (warm-start from sae_L00_final,
+  32k/bf16, batch 768 or 1024 depending on free RAM vs the llama servers),
+  log `~/marin-sae/topup_chain.log`; census JSONs `census_L00_final.json`,
+  `census_L00_extend.json` on dusk.
+- 64k rung: STAGED as `~/marin-sae/run_L00_64k.sh` (refuses to run without
+  ALEX_GO=1). 1 epoch = 9762 steps ≈ 17.4 h at the measured ~160 tok/s.
+- Sizing for the compute-location call: `sae/SIZING-dusk-vs-apocrita.md`.
