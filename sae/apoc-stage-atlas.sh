@@ -9,13 +9,13 @@
 # token_idx. Resumable: re-run skips complete files.
 set -uo pipefail
 DUR=/data/SPCS-IOT/marin-32b
-ATLAS=$DUR/atlas
-RESORT=$DUR/atlas-resorted
+ATLAS=/data/scratch/apx186/marin32b/atlas
+RESORT=$ATLAS-resorted
 LOGS=/data/scratch/apx186/marin32b/logs
 BASE="https://huggingface.co/datasets/Station-house/marin-32b-neuron-atlas/resolve/main"
 mkdir -p "$LOGS" "$RESORT"
 
-echo "=== inodes before ==="; df -i /data/SPCS-IOT | tail -1
+echo "=== inodes before ==="; df -i /data/scratch/apx186 | tail -1
 
 # 1) pull: iterate filelist.json (path+size), skip complete, curl-resume
 python3 - <<'EOF'
@@ -78,5 +78,5 @@ print(f"{dst}: {n} rows")
 EOF
 done
 
-echo "=== inodes after ==="; df -i /data/SPCS-IOT | tail -1
+echo "=== inodes after ==="; df -i /data/scratch/apx186 | tail -1
 echo "STAGE COMPLETE"

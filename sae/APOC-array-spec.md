@@ -35,19 +35,30 @@ token, resumable `curl -sfL -C -`, size-checked).
    eai-sparsify must be pre-installed (with `--no-deps` + missing deps, as
    on dusk) during a login/compute session — GPU nodes cannot pip.
 
-## Durable layout
+## Layout (2026-10-27 SPEC UPDATE: staging on SCRATCH, not durable)
 
-- `/data/SPCS-IOT/marin-32b/atlas/` — full pilot tree pulled by staging
-  job(s) on compute/computeshort from filelist.json + curl-resolve; size-
-  check every file; sha256-verify vs per-tree MANIFESTs. 1,062 files.
-- `/data/SPCS-IOT/marin-32b/atlas-resorted/` — the 64 sparse layer files
-  re-sorted by token_idx (duckdb), built once during staging so array
-  tasks never pay resort cost.
-- `/data/SPCS-IOT/marin-32b/runs/` — checkpoints + logs + sha256 manifest
-  of sweep outputs.
-- `hf-cache/` — HF_HOME for model weights (~65 G) ONLY if the harness
-  validates against the model; TopK on pre-extracted activations does
-  NOT. Default skip.
+Alex: the dataset is re-pullable from HF, so durability is not needed —
+atlas staging lives on **scratch** (quota workaround), and each array task
+pulls its layer slice to node-local storage, cleaned up on task end.
+
+- `/data/scratch/apx186/marin32b/atlas/` — full pilot tree pulled by the
+  staging job on compute/computeshort from `survey/filelist.json` +
+  curl-resolve URLs; size-check every file; sha256-verify vs per-tree
+  MANIFESTs. 1,062 files. Re-pullable ⇒ 65-day purge is acceptable.
+- `/data/scratch/apx186/marin32b/atlas-resorted/` — the 64 sparse layer
+  files re-sorted by token_idx (duckdb), built once during staging.
+- `/data/scratch/apx186/marin32b/sae-venv/` — bolmo_cu118 torch 2.7.1
+  userbase + eai-sparsify pre-installed (GPU nodes can't pip).
+- `/data/SPCS-IOT/marin-32b/runs/` — the ONE durable piece: sweep
+  checkpoints + logs + sha256 manifest of outputs (results, not the
+  re-pullable dataset).
+- `hf-cache/` — only if the harness validates against the model; TopK on
+  pre-extracted activations does NOT. Default skip.
+
+Array-task data path: scratch copy → $SLURM_TMPDIR (node-local) → train →
+$SLURM_TMPDIR cleaned up on task end. (GPU nodes have no HF egress, so the
+"direct from HF" option only applies to compute-side jobs; the scratch copy
+is the primary source. Durable-copy dependency: gone.)
 
 ## Jobs
 

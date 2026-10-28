@@ -11,7 +11,8 @@
 # only after fvu falls and tok/s is sane.
 set -euo pipefail
 DUR=/data/SPCS-IOT/marin-32b
-RESORT=$DUR/atlas-resorted
+ATLAS=/data/scratch/apx186/marin32b/atlas
+RESORT=/data/scratch/apx186/marin32b/atlas-resorted
 RUNS=$DUR/runs
 TMPD=/data/scratch/apx186/marin32b/tmp
 mkdir -p "$RUNS" "$TMPD"
@@ -22,10 +23,11 @@ echo "node $(hostname -f) layer $LL task $SLURM_ARRAY_TASK_ID"
 STEPS=${STEPS:-6000}
 if [ "${SMOKE:-0}" = "1" ]; then STEPS=200; fi
 
-# ---- stage node-local slice (durable -> $SLURM_TMPDIR) ----
+# ---- stage node-local slice (scratch staging copy -> $SLURM_TMPDIR; GPU nodes
+# have no HF egress, so tasks read the scratch copy, cleaned up on job end) ----
 cp "$RESORT/layer$LL-tokensorted.parquet" "$SLURM_TMPDIR/" \
   || { cp "/data/scratch/apx186/marin32b/layer$LL-tokensorted.parquet" "$SLURM_TMPDIR/"; }
-cp "$DUR/atlas/pilot/fineweb-10m-sparse/summaries/neuron_scale.parquet" "$SLURM_TMPDIR/"
+cp /data/scratch/apx186/marin32b/atlas/pilot/fineweb-10m-sparse/summaries/neuron_scale.parquet "$SLURM_TMPDIR/"
 ls -la "$SLURM_TMPDIR"
 
 # ---- env: bolmo_cu118.sif userbase (torch 2.7.1 cu126), eai-sparsify
