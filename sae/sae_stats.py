@@ -1,24 +1,42 @@
 #!/usr/bin/env python3
-"""Post-run stats for a trained atlas SAE: loss endpoint (sampled), alive-latent
-count, max feature activation. Usage: ~/torch-rocm-env sae_stats.py <ckpt_dir>
-<layer00-tokensorted.parquet> [sample_tokens=200000]"""
+"""Post-run stats + census for a trained atlas SAE.
+
+Usage: sae_stats.py <ckpt_dir> <layer-tokensorted.parquet> [sample_tokens=200000] [census_prefix]
+Writes stats JSON to stdout and, if census_prefix is given, a per-latent census
+parquet (<prefix>.parquet): layer, latent_id, alive, max_act, fire_frac.
+Portable version for the APOC venv (paths passed, nothing dusk-hardcoded).
+"""
 import sys, json
 import numpy as np
+import pyarrow as pa
+import pyarrow.parquet as pq
 import torch
 from sparsify import Sae
-
-sys.path.insert(0, "/home/dusk/marin-sae")
 from train_sae import batches, load_scales_vec, D_MODEL_MLP  # noqa: E402
 
 if __name__ == "__main__":
     ckpt, parquet = sys.argv[1], sys.argv[2]
     sample_tokens = int(sys.argv[3]) if len(sys.argv) > 3 else 200_000
+    census_prefix = sys.argv[4] if len(sys.argv) > 4 else None
 
     sae = Sae.load_from_disk(ckpt, device="cuda:0")
     sae.eval()
     n_latents = sae.encoder.weight.shape[0]
+    # layer id comes from the checkpoint config if present, else arg-free default 0
     layer_id = 0
-    scale_vec = load_scales_vec("/home/dusk/marin-atlas/fineweb-10m-sparse-early/summaries/neuron_scale.parquet", layer_id, D_MODEL_MLP)
+    try:
+        cfg = json.load(open(f"{ckpt}/cfg.json"))
+        # trainer stores the layer label; parse "L40" -> 40 when present
+        import re
+        m = re.search(r"L(\d+)", json.dumps(cfg))
+        if m:
+            layer_id = int(m.group(1))
+    except Exception:
+        pass
+    scale_parquet = sys.argv[5] if len(sys.argv) > 5 else None
+    scale_vec = None
+    if scale_parquet:
+        scale_vec = load_scales_vec(scale_parquet, layer_id, D_MODEL_MLP)
 
     seen = torch.zeros(n_latents, dtype=torch.bool, device="cuda:0")
     max_act = torch.zeros(n_latents, device="cuda:0")
@@ -47,6 +65,7 @@ if __name__ == "__main__":
     freq_deciles = freq_alive.quantile(torch.tensor(decile_qs, device=freq_alive.device)).tolist() if freq_alive.numel() else None
     stats = {
         "ckpt": ckpt,
+        "layer": layer_id,
         "tokens_sampled": n_tok,
         "fvu_sampled": fvu_num / fvu_den,
         "alive_latents": int(alive.sum().item()),
@@ -55,7 +74,6 @@ if __name__ == "__main__":
         "max_feat_act": float(max_act.max().item()),
         "max_feat_idx": int(max_act.argmax().item()),
         "p99_feat_max_act": float(max_act[seen].quantile(0.99).item()) if seen.any() else None,
-        # firing-frequency distribution (fraction of sampled tokens each latent fires on)
         "freq_deciles_alive": [round(d, 6) for d in freq_deciles] if freq_deciles else None,
         "freq_mean_alive": round(float(freq_alive.mean().item()), 6) if freq_alive.numel() else None,
         "freq_p99_alive": round(float(freq_alive.quantile(0.99).item()), 6) if freq_alive.numel() else None,
@@ -64,3 +82,14 @@ if __name__ == "__main__":
         "freq_top100_share": round(float(freq_alive.topk(min(100, freq_alive.numel())).values.sum().item() / max(freq_alive.sum().item(), 1)), 4) if freq_alive.numel() else None,
     }
     print(json.dumps(stats, indent=1))
+
+    if census_prefix:
+        table = pa.table({
+            "layer": pa.array([layer_id] * n_latents, type=pa.int16()),
+            "latent_id": pa.array(range(n_latents), type=pa.int32()),
+            "alive": pa.array(seen.cpu().numpy(), type=pa.bool_()),
+            "max_act": pa.array(max_act.cpu().numpy(), type=pa.float32()),
+            "fire_frac": pa.array(freq_all.cpu().numpy(), type=pa.float32()),
+        })
+        pq.write_table(table, f"{census_prefix}.parquet")
+        print(f"census parquet: {census_prefix}.parquet ({n_latents} rows)", flush=True)

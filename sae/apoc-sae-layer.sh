@@ -13,11 +13,13 @@ set -euo pipefail
 DUR=/data/SPCS-IOT/marin-32b
 ATLAS=/data/scratch/apx186/marin32b/atlas
 RESORT=/data/scratch/apx186/marin32b/atlas-resorted
-RUNS=$DUR/runs
+RUNS=/data/scratch/apx186/marin32b/sae-32k
 TMPD=/data/scratch/apx186/marin32b/tmp
 mkdir -p "$RUNS" "$TMPD"
 
 LL=$(printf "%02d" "$SLURM_ARRAY_TASK_ID")
+LDIR="$RUNS/layer=$LL"
+mkdir -p "$LDIR"
 echo "node $(hostname -f) layer $LL task $SLURM_ARRAY_TASK_ID"
 
 STEPS=${STEPS:-6000}
@@ -40,12 +42,19 @@ cd /data/scratch/apx186/marin32b
 python train_sae.py \
   --layer-parquet "$SLURM_TMPDIR/layer$LL-tokensorted.parquet" \
   --scale-parquet "$SLURM_TMPDIR/neuron_scale.parquet" \
-  --out-dir "$RUNS/L$LL" \
+  --out-dir "$LDIR" \
   --layer-label "L$LL" \
   --n-latents 32768 --k 32 \
   --batch-tokens 1024 --steps "$STEPS" \
   --log-every 50 --save-every 1000
 
+# ---- per-layer stats + census (fvu endpoint, alive latents, max feat act,
+# frequency fields; census parquet one row per latent) ----
+python sae_stats.py "$LDIR/sae_L${LL}_final" "$SLURM_TMPDIR/layer$LL-tokensorted.parquet" \
+  200000 "$LDIR/census" "$SLURM_TMPDIR/neuron_scale.parquet" \
+  || echo "STATS FAILED layer $LL (training artifacts kept)"
+
 # ---- manifest outputs ----
-( cd "$RUNS/L$LL" && find . -type f -exec sha256sum {} \; > "$RUNS/L$LL.sha256" )
+( cd "$LDIR" && find . -type f -exec sha256sum {} \; > "$LDIR/sha256.txt" )
 echo "TASK DONE layer $LL"
+
