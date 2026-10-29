@@ -17,15 +17,11 @@ pip install --quiet "huggingface_hub>=0.25" 2>&1 | tail -1
 
 export HUGGING_FACE_HUB_TOKEN="$HF_TOKEN"
 python3 - <<'EOF'
-import os, sys
+import os
 from huggingface_hub import HfApi
 api = HfApi(token=os.environ["HF_TOKEN"])
-repo = "alxcspr/stationhouse"
-try:
-    api.create_repo(repo, repo_type="model", private=True, exist_ok=True)
-    print("repo ready (private):", repo)
-except Exception as e:
-    print("create_repo:", e)
+info = api.repo_info("alxcspr/stationhouse", repo_type="model")
+print("repo exists (no creation attempted): private =", info.private)
 EOF
 
 LAYERS="00 01 02 03 04 05 06 07 08 09 10 11 37 38 39 40 41 56 57 58"
