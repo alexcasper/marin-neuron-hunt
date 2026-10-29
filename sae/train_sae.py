@@ -35,6 +35,12 @@ def parse_args():
     p.add_argument("--init-from", default="", help="checkpoint dir to warm-start from")
     p.add_argument("--start-step", type=int, default=0, help="absolute step this run continues from")
     p.add_argument("--save-at", default="", help="comma list of absolute steps to checkpoint (overrides save-every)")
+    p.add_argument("--val-rows", type=int, default=0, help="hold out this many trailing rows of the layer parquet as validation (0=off)")
+    p.add_argument("--val-tokens", type=int, default=30000, help="cap on tokens per validation pass")
+    p.add_argument("--val-every", type=int, default=3000, help="absolute-step interval for validation passes")
+    p.add_argument("--plateau-window", type=int, default=9000, help="compare val fvu vs this many steps back")
+    p.add_argument("--plateau-thresh", type=float, default=0.02, help="relative improvement below this = plateaued (stop)")
+    p.add_argument("--keep-grid", type=int, default=9000, help="retention: keep step ckpts on this grid + latest, cull rest")
     p.add_argument("--seed", type=int, default=20261026)
     return p.parse_args()
 
@@ -58,12 +64,19 @@ def load_scales_vec(scale_parquet, layer_id, d_model=D_MODEL_MLP):
     return vec
 
 
-def batches(parquet_path, batch_tokens, scales_by_neuron=None):
-    """Yield dense fp32 CPU batches [B, 27648]; 64 rows per token."""
+def batches(parquet_path, batch_tokens, scales_by_neuron=None, max_rows=None):
+    """Yield dense fp32 CPU batches [B, 27648]; 64 rows per token.
+    max_rows caps the training stream (rows beyond it, e.g. a val holdout, are skipped)."""
     pf = pq.ParquetFile(parquet_path)
     rows_per_batch = batch_tokens * 64
+    emitted = 0
     for rb in pf.iter_batches(batch_size=rows_per_batch, columns=["token_idx", "neuron", "gate", "up"]):
         n = rb.num_rows
+        if max_rows is not None and emitted + n > max_rows:
+            rb = rb.slice(0, max_rows - emitted)
+            n = rb.num_rows
+        if n == 0:
+            return
         assert n % 64 == 0
         tok = rb.column("token_idx").to_numpy()
         neu = rb.column("neuron").to_numpy()
@@ -80,21 +93,89 @@ def batches(parquet_path, batch_tokens, scales_by_neuron=None):
         yield torch.from_numpy(x)
 
 
-def prefetch(source, depth=4):
+def prefetch(source_factory, depth=4):
+    """Cycle a batch-source factory forever (multi-epoch training)."""
     import queue, threading
     q = queue.Queue(maxsize=depth)
 
     def worker():
-        for b in source:
-            q.put(b)
-        q.put(None)
+        epoch = 0
+        while True:
+            for b in source_factory():
+                q.put(b)
+            epoch += 1
+            print(f"EPOCH {epoch} complete — recycling data stream", flush=True)
 
     threading.Thread(target=worker, daemon=True).start()
     while True:
-        item = q.get()
-        if item is None:
+        yield q.get()
+
+
+def _tail_batches(pf, start_row, batch_tokens):
+    """Yield pyarrow RecordBatches covering rows [start_row, end), aligned to 64."""
+    import pyarrow as pa
+    md = pf.metadata
+    spans = []
+    pos = 0
+    for g in range(md.num_row_groups):
+        spans.append((pos, md.row_group(g).num_rows))
+        pos += md.row_group(g).num_rows
+    buf = None
+    for gi, (gstart, gsize) in enumerate(spans):
+        gend = gstart + gsize
+        if gend <= start_row:
+            continue
+        take_start = max(start_row, gstart)
+        tbl = pf.read_row_group(gi, columns=["token_idx", "neuron", "gate", "up"])
+        tbl = tbl.slice(take_start - gstart, gend - take_start)
+        if buf is not None:
+            tbl = pa.concat_tables([buf, tbl])
+        nb = tbl.num_rows // 64 * 64
+        if nb == 0:
+            buf = tbl
+            continue
+        for i in range(0, nb, batch_tokens * 64):
+            yield tbl.slice(i, min(batch_tokens * 64, nb - i)).combine_chunks()
+        buf = tbl.slice(nb) if tbl.num_rows > nb else None
+
+
+def val_batches(parquet_path, val_rows, batch_tokens, scales_by_neuron=None, cap_tokens=None):
+    """Validation batches from the trailing val_rows of a token-sorted parquet."""
+    pf = pq.ParquetFile(parquet_path)
+    total = pf.metadata.num_rows
+    start = max(0, total - val_rows)
+    emitted = 0
+    for rb in _tail_batches(pf, start, batch_tokens):
+        n = rb.num_rows
+        if n % 64 != 0:
+            continue
+        tok = rb.column("token_idx").to_numpy()
+        neu = rb.column("neuron").to_numpy()
+        gate = rb.column("gate").to_numpy().astype(np.float32)
+        up = rb.column("up").to_numpy().astype(np.float32)
+        B = n // 64
+        x = np.zeros((B, D_MODEL_MLP), dtype=np.float32)
+        act = gate / (1.0 + np.exp(-gate)) * up
+        if scales_by_neuron is not None:
+            act = act / scales_by_neuron[neu]
+        flat_b = np.repeat(np.arange(B, dtype=np.int64), 64)
+        x[flat_b, neu] = act
+        yield torch.from_numpy(x)
+        emitted += B
+        if cap_tokens and emitted >= cap_tokens:
             return
-        yield item
+
+
+def val_fvu(sae, parquet_path, val_rows, batch_tokens, scale_vec, dev, cap_tokens):
+    num, den = 0.0, 0.0
+    with torch.no_grad():
+        for x in val_batches(parquet_path, val_rows, 1024, scale_vec, cap_tokens):
+            x = x.to(dev).to(torch.bfloat16)
+            out = sae(x)
+            resid = x.to(torch.bfloat16) - out.sae_out
+            num += (resid.float() ** 2).sum().item()
+            den += (x.float() ** 2).sum().item()
+    return num / den if den else float("nan")
 
 
 def main():
@@ -132,10 +213,18 @@ def main():
     save_at = set(int(s) for s in args.save_at.split(",") if s.strip())
 
     log_path = os.path.join(args.out_dir, "train_log.jsonl")
+    val_hist = []          # [(step, val_fvu)]
+    plateaued_at = None
+    train_rows = None
+    if args.val_rows > 0:
+        _pf = pq.ParquetFile(args.layer_parquet)
+        train_rows = _pf.metadata.num_rows - args.val_rows
+        print(f"val holdout: {args.val_rows} rows; training stream capped at {train_rows} rows", flush=True)
     t0 = time.time()
     tokens_seen = 0
+    step = args.start_step
     run = True
-    data_iter = prefetch(batches(args.layer_parquet, args.batch_tokens, scale_vec))
+    data_iter = prefetch(lambda: batches(args.layer_parquet, args.batch_tokens, scale_vec, max_rows=train_rows))
     for step in range(args.start_step + 1, args.steps + 1):
         try:
             x = next(data_iter).to(dev, non_blocking=True)
@@ -177,6 +266,37 @@ def main():
             ck = os.path.join(args.out_dir, f"sae_{args.layer_label}_step{step}")
             sae.save_to_disk(ck)
             print("checkpoint", ck, flush=True)
+            # retention: keep ckpts on the keep-grid + the latest; cull the rest
+            if args.keep_grid:
+                import shutil, re as _re
+                for d in os.listdir(args.out_dir):
+                    m = _re.fullmatch(rf"sae_{args.layer_label}_step(\d+)", d)
+                    if m and int(m.group(1)) != step and int(m.group(1)) % args.keep_grid != 0:
+                        shutil.rmtree(os.path.join(args.out_dir, d))
+                        print("culled", d, flush=True)
+        # validation + plateau detection
+        if args.val_rows > 0 and step % args.val_every == 0:
+            v = val_fvu(sae, args.layer_parquet, args.val_rows, 1024, scale_vec, dev, args.val_tokens)
+            val_hist.append((step, v))
+            print(json.dumps({"VAL": True, "step": step, "val_fvu": round(v, 6),
+                              "train_fvu": float(fvu.item())}), flush=True)
+            with open(os.path.join(args.out_dir, "val_log.jsonl"), "a") as f:
+                f.write(json.dumps({"step": step, "val_fvu": v}) + "\n")
+            prior = [h for h in val_hist if h[0] <= step - args.plateau_window]
+            if prior:
+                old = max(prior, key=lambda h: h[0])[1]
+                rel = (old - v) / old if old > 0 else 0.0
+                print(json.dumps({"PLATEAU_CHECK": True, "step": step, "vs_step": prior[-1][0],
+                                  "old_val_fvu": old, "rel_improvement": round(rel, 4),
+                                  "threshold": args.plateau_thresh}), flush=True)
+                if rel < args.plateau_thresh:
+                    plateaued_at = step
+                    ck = os.path.join(args.out_dir, f"sae_{args.layer_label}_plateau_step{step}")
+                    sae.save_to_disk(ck)
+                    print(json.dumps({"PLATEAU": True, "step": step, "val_fvu": round(v, 6),
+                                      "rel_improvement": round(rel, 4), "ckpt": ck}), flush=True)
+                    print("saved", ck, flush=True)
+                    break
     if args.save_at:
         last = max(save_at) if save_at else args.steps
         ckpt = os.path.join(args.out_dir, f"sae_{args.layer_label}_step{last}")
@@ -184,7 +304,9 @@ def main():
             sae.save_to_disk(ckpt)
             print("saved (exhausted)", ckpt, flush=True)
     else:
-        ckpt = os.path.join(args.out_dir, f"sae_{args.layer_label}_final")
+        last_step = step if 'step' in dir() else args.steps
+        suffix = f"_s{last_step}" if (args.val_rows > 0 or args.start_step > 0) else ""
+        ckpt = os.path.join(args.out_dir, f"sae_{args.layer_label}_final{suffix}")
         sae.save_to_disk(ckpt)
         print("saved", ckpt, flush=True)
 
