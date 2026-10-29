@@ -32,7 +32,9 @@ def parse_args():
     p.add_argument("--lr", type=float, default=3e-4)
     p.add_argument("--log-every", type=int, default=50)
     p.add_argument("--save-every", type=int, default=0, help="0 = only final save")
-    p.add_argument("--init-from", default=None, help="ckpt dir (Sae.load_from_disk) to warm-start from")
+    p.add_argument("--init-from", default="", help="checkpoint dir to warm-start from")
+    p.add_argument("--start-step", type=int, default=0, help="absolute step this run continues from")
+    p.add_argument("--save-at", default="", help="comma list of absolute steps to checkpoint (overrides save-every)")
     p.add_argument("--seed", type=int, default=20261026)
     return p.parse_args()
 
@@ -125,14 +127,16 @@ def main():
         print(f"warm-started from {args.init_from}", flush=True)
     opt = torch.optim.AdamW(sae.parameters(), lr=args.lr, betas=(0.9, 0.95), eps=1e-8)
     n_params = sum(p.numel() for p in sae.parameters())
-    print(f"sae params: {n_params/1e6:.0f}M ({n_params*4/2**30:.1f} GiB fp32 + 2x Adam moments)", flush=True)
+    print(f"sae params: {n_params/1e6:.0f}M", flush=True)
+
+    save_at = set(int(s) for s in args.save_at.split(",") if s.strip())
 
     log_path = os.path.join(args.out_dir, "train_log.jsonl")
     t0 = time.time()
     tokens_seen = 0
     run = True
     data_iter = prefetch(batches(args.layer_parquet, args.batch_tokens, scale_vec))
-    for step in range(1, args.steps + 1):
+    for step in range(args.start_step + 1, args.steps + 1):
         try:
             x = next(data_iter).to(dev, non_blocking=True)
         except StopIteration:
@@ -164,13 +168,25 @@ def main():
             print(json.dumps(rec), flush=True)
             with open(log_path, "a") as f:
                 f.write(json.dumps(rec) + "\n")
-        if args.save_every and step % args.save_every == 0:
+        if args.save_at:
+            if step in save_at:
+                ck = os.path.join(args.out_dir, f"sae_{args.layer_label}_step{step}")
+                sae.save_to_disk(ck)
+                print("checkpoint", ck, flush=True)
+        elif args.save_every and step % args.save_every == 0:
             ck = os.path.join(args.out_dir, f"sae_{args.layer_label}_step{step}")
             sae.save_to_disk(ck)
             print("checkpoint", ck, flush=True)
-    ckpt = os.path.join(args.out_dir, f"sae_{args.layer_label}_final")
-    sae.save_to_disk(ckpt)
-    print("saved", ckpt, flush=True)
+    if args.save_at:
+        last = max(save_at) if save_at else args.steps
+        ckpt = os.path.join(args.out_dir, f"sae_{args.layer_label}_step{last}")
+        if not os.path.exists(ckpt):  # data exhausted before last save-at step
+            sae.save_to_disk(ckpt)
+            print("saved (exhausted)", ckpt, flush=True)
+    else:
+        ckpt = os.path.join(args.out_dir, f"sae_{args.layer_label}_final")
+        sae.save_to_disk(ckpt)
+        print("saved", ckpt, flush=True)
 
 
 if __name__ == "__main__":
