@@ -1,0 +1,27 @@
+{
+ "ckpt": "/home/dusk/marin-sae/runs/L00-extend/sae_L00_final",
+ "tokens_sampled": 400384,
+ "fvu_sampled": 0.7315410269922786,
+ "alive_latents": 26754,
+ "alive_frac": 0.8165,
+ "n_latents": 32768,
+ "max_feat_act": 11.75,
+ "max_feat_idx": 6219,
+ "p99_feat_max_act": 4.96875,
+ "freq_deciles_alive": [
+  5e-06,
+  1e-05,
+  2e-05,
+  3.2e-05,
+  5.2e-05,
+  9.5e-05,
+  0.000215,
+  0.000593,
+  0.001981
+ ],
+ "freq_mean_alive": 0.001196,
+ "freq_p99_alive": 0.020468,
+ "freq_max": 0.999798,
+ "freq_max_idx": 6219,
+ "freq_top100_share": 0.2871
+}
