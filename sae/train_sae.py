@@ -41,6 +41,7 @@ def parse_args():
     p.add_argument("--plateau-window", type=int, default=9000, help="compare val fvu vs this many steps back")
     p.add_argument("--plateau-thresh", type=float, default=0.02, help="relative improvement below this = plateaued (stop)")
     p.add_argument("--keep-grid", type=int, default=9000, help="retention: keep step ckpts on this grid + latest, cull rest")
+    p.add_argument("--l2-norm-input", action="store_true", help="L2-normalize each input vector (kills scale heterogeneity)")
     p.add_argument("--seed", type=int, default=20261026)
     return p.parse_args()
 
@@ -231,10 +232,13 @@ def main():
         except StopIteration:
             print("data exhausted at step", step, flush=True)
             break
-        out = sae(x.to(torch.bfloat16))
+        x_in = x.to(torch.bfloat16)
+        if getattr(args, "l2_norm_input", False):
+            x_in = (x_in.float() / (x_in.float().norm(dim=1, keepdim=True) + 1e-8)).to(torch.bfloat16)
+        out = sae(x_in)
         x_hat = out.sae_out
-        resid = x.to(torch.bfloat16) - x_hat
-        fvu = (resid.float() ** 2).sum(dim=1).mean() / (x.to(torch.float32) ** 2).sum(dim=1).mean()
+        resid = x_in - x_hat
+        fvu = (resid.float() ** 2).sum(dim=1).mean() / (x_in.float() ** 2).sum(dim=1).mean()
         loss = fvu
         opt.zero_grad(set_to_none=True)
         loss.backward()
