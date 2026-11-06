@@ -10,3 +10,7 @@
 data/pilot/**
 data/*.log
 .venv-*/
+
+# runtime/tool state, nested repos — not lane content
+.entire/
+hunt/

@@ -1,5 +1,10 @@
 {
   "hooks": {
+    "beforeSubmitPrompt": [
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks cursor before-submit-prompt'"
+      }
+    ],
     "postToolUse": [
       {
         "command": "bd cursor-hook postToolUse"
@@ -8,11 +13,37 @@
     "preCompact": [
       {
         "command": "bd cursor-hook preCompact"
+      },
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks cursor pre-compact'"
+      }
+    ],
+    "sessionEnd": [
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks cursor session-end'"
       }
     ],
     "sessionStart": [
       {
         "command": "bd cursor-hook sessionStart"
+      },
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks cursor session-start'"
+      }
+    ],
+    "stop": [
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks cursor stop'"
+      }
+    ],
+    "subagentStart": [
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks cursor subagent-start'"
+      }
+    ],
+    "subagentStop": [
+      {
+        "command": "sh -c 'if ! command -v entire >/dev/null 2>&1; then exit 0; fi; exec entire hooks cursor subagent-stop'"
       }
     ]
   },
