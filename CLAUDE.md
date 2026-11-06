@@ -2,6 +2,16 @@
 
 This file provides instructions and context for AI coding agents working on this project.
 
+## Conduct rules (alex, 2026-11-07 — binding on all agents in this space)
+
+- **Do not argue on pull requests.** No debate threads or pushback in PR
+  comments or reviews. State facts, make the requested fix, or escalate to
+  alex — never re-litigate a review.
+- **No neuron explanations unless explicitly instructed.** Do not generate,
+  auto-publish, or volunteer neuron/feature explanations (interp previews,
+  feature narratives, census commentary) — only produce them when alex or the
+  dispatch explicitly asks for that artifact.
+
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:1105d646 -->
 ## Beads Issue Tracker
 

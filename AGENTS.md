@@ -1,5 +1,15 @@
 # Agent Instructions
 
+## Conduct rules (alex, 2026-11-07 — binding on all agents in this space)
+
+- **Do not argue on pull requests.** No debate threads or pushback in PR
+  comments or reviews. State facts, make the requested fix, or escalate to
+  alex — never re-litigate a review.
+- **No neuron explanations unless explicitly instructed.** Do not generate,
+  auto-publish, or volunteer neuron/feature explanations (interp previews,
+  feature narratives, census commentary) — only produce them when alex or the
+  dispatch explicitly asks for that artifact.
+
 This project uses **bd** (beads) for issue tracking. Run `bd prime` for full workflow context.
 
 > **Architecture in one line:** Issues live in a local Dolt database
