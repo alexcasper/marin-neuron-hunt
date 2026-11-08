@@ -253,3 +253,8 @@ Before they review, `stationhouse context <taskId> --json` shows what else is go
   didn't; tell the contributor to add it from the website.
 - `only one level of subtasks is supported`: propose it under the parent's parent instead.
 <!-- stationhouse:end -->
+
+<!-- entire-agent:begin -->
+Read .entire/agent-guide.md for this repository's workflow, source inspection, and verification guidance.
+@.entire/agent-guide.md
+<!-- entire-agent:end -->
