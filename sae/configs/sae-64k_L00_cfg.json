@@ -1,0 +1,1 @@
+{"activation": "topk", "expansion_factor": 32, "normalize_decoder": true, "num_latents": 65536, "k": 32, "multi_topk": false, "skip_connection": false, "transcode": false, "d_in": 27648}

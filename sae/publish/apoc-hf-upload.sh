@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH -J hf-upload
-#SBATCH -p computeshort
+#SBATCH -p compute
 #SBATCH -A pilot_gpu
 #SBATCH -t 04:00:00
 #SBATCH -c 2

@@ -10,7 +10,7 @@
 # (1h cap), in-SIF duckdb resort (PYTHONUSERBASE=qwen35 pyuser, torch2.7.1),
 # mkdirs + df -i bookends. Resumable: re-run skips complete files.
 set -uo pipefail
-DUR=/data/SPCS-IOT/marin-32b
+DUR=/data/scratch/apx186/marin32b
 ATLAS=$DUR/atlas
 RESORT=$DUR/atlas-resorted
 LOGS=/data/scratch/apx186/marin32b/logs
@@ -20,16 +20,17 @@ BASE="https://huggingface.co/datasets/Station-house/marin-32b-neuron-atlas/resol
 mkdir -p "$LOGS" "$RESORT" "$TMPD" "$ATLAS"
 
 echo "=== inodes/bytes before ==="
-df -i /data/SPCS-IOT | tail -1
-df -h /data/SPCS-IOT | tail -1
+df -i /data/scratch | tail -1
+df -h /data/scratch | tail -1
 
 # 1) pull with node python3 (stdlib only) + node curl — CPU compute nodes
 #    have verified HF egress (probe 33544347)
 python3 - <<'EOF'
 import json, os, subprocess, time
 BASE = "https://huggingface.co/datasets/Station-house/marin-32b-neuron-atlas/resolve/main"
-ATLAS = "/data/SPCS-IOT/marin-32b/atlas"
+ATLAS = "/data/scratch/apx186/marin32b/atlas"
 files = json.load(open("/data/scratch/apx186/marin32b/filelist.json"))
+files = [f for f in files if f["path"].startswith("pilot/fineweb-10m-sparse")]
 todo = [f for f in files
         if not (os.path.exists(os.path.join(ATLAS, f["path"]))
                 and os.path.getsize(os.path.join(ATLAS, f["path"])) == f["size"])]
@@ -78,8 +79,9 @@ EOF
 # 2) verify sizes vs manifest
 python3 - <<'EOF'
 import json, os
-ATLAS = "/data/SPCS-IOT/marin-32b/atlas"
+ATLAS = "/data/scratch/apx186/marin32b/atlas"
 files = json.load(open("/data/scratch/apx186/marin32b/filelist.json"))
+files = [f for f in files if f["path"].startswith("pilot/fineweb-10m-sparse")]
 missing = [f["path"] for f in files
            if not os.path.exists(os.path.join(ATLAS, f["path"]))
            or os.path.getsize(os.path.join(ATLAS, f["path"])) != f["size"]]
@@ -110,6 +112,6 @@ EOF
 done
 
 echo "=== inodes/bytes after ==="
-df -i /data/SPCS-IOT | tail -1
-df -h /data/SPCS-IOT | tail -1
+df -i /data/scratch | tail -1
+df -h /data/scratch | tail -1
 echo "STAGE COMPLETE"
