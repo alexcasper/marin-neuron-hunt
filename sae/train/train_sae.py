@@ -7,7 +7,7 @@ the atlas per-neuron scale), and trains an eai-sparsify TopK SparseCoder.
 
 Launch via ~/torch-rocm-env train_sae.py ...
 """
-import argparse, json, math, os, time
+import argparse, json, math, os, sys, time
 import numpy as np
 import pyarrow.parquet as pq
 import torch
@@ -25,6 +25,10 @@ def parse_args():
         "~/marin-atlas/fineweb-10m-sparse-early/summaries/neuron_scale.parquet"))
     p.add_argument("--out-dir", required=True)
     p.add_argument("--layer-label", default="L?")
+    p.add_argument("--layer", type=int, default=None,
+                   help="explicit layer id for the neuron-scale table (overrides label parsing)")
+    p.add_argument("--raw-acts", action="store_true",
+                   help="deliberately train on raw activations (no per-neuron scale division)")
     p.add_argument("--n-latents", type=int, default=65536)
     p.add_argument("--k", type=int, default=64)
     p.add_argument("--batch-tokens", type=int, default=2048)
@@ -194,8 +198,20 @@ def main():
     # layer passed via --layer-label when it is "LL" formatted.
     m = args.layer_label.lstrip("L")
     layer_id = int(m) if m.isdigit() else None
+    if args.layer is not None:
+        layer_id = args.layer
     scale_vec = None
-    if layer_id is not None and os.path.exists(args.scale_parquet):
+    if args.raw_acts:
+        print("RAW-ACTS mode requested via --raw-acts (no scale division)", flush=True)
+    elif layer_id is None:
+        sys.exit(
+            f"FATAL: cannot resolve layer id for neuron scales (label={args.layer_label!r} is not "
+            f"'LL'-formatted and --layer was not given). Pass --layer <int> explicitly, or "
+            f"--raw-acts to deliberately train unscaled. Refusing to silently drop normalization "
+            f"(root cause of the 64k census anomaly, 2026-11-07).")
+    elif not os.path.exists(args.scale_parquet):
+        sys.exit(f"FATAL: scale parquet not found: {args.scale_parquet}")
+    else:
         scale_vec = load_scales_vec(args.scale_parquet, layer_id)
         print(f"loaded {int((scale_vec > 1e-4).sum())} scales for layer {layer_id}", flush=True)
 
