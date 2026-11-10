@@ -1,4 +1,7 @@
 # Encoder-attribution outputs — 15 layers staged locally (2026-11-10)
+# UPDATE 2026-11-10 (later): staging dir now holds all 29 layers done on Apocrita
+# (00–03, 05, 06, 08–23, 25–29, 31, 57; still minus timeout layers 04, 07, 24, 30).
+# 29-layer findings appended at the bottom.
 
 Source: dawn `/mnt/d/env/apoc/marin32b/hf_upload/nominate_enc/attribution_enc_L*.parquet`
 (15 layers: 01,02,03,05,06,08,09,10,11,12,13,14,15,16,57; 8,000 tracked latents each,
@@ -59,3 +62,26 @@ No-filter L57 reproduces exactly: 40 latents with top1>=0.5 → 11 distinct neur
    (L06–L16, ~34 distinct), plus neuron 3872@L57 and 26033@L57 held as suspects
    pending an always-on check. Validation must go through atlas pole_stats
    exemplars before any of this becomes a hunt list.
+
+## 29-layer update (2026-11-10, staging dir complete for done layers)
+
+All 14 newly staged layers verified: 8,000 rows each, parquet-clean, matching
+`attribution_control_LNN.json` stamped with per-layer sweep-final ckpts.
+
+Changes to the picture:
+
+- **New hotspot L27:** 25 ge50 latents → 7 distinct neurons (fire counts 20–330,
+  selective) — the strongest mid-layer cluster alongside L11 (16→8).
+- **L22:** 9 ge50 → 4 distinct neurons.
+- **Selective shortlist grows to 109 latents → 68 distinct candidate neurons**
+  (filter: top1>=0.5, 20<=fired_tokens<20000). Per-layer distinct candidates:
+  L11=8, L10=7, L27=7, L12=7, L16=5, L29=5, L17=2, L22=4, rest 1–3.
+- **The always-on zone is L57-only**: 18 of its ge50 latents fire >=20k tokens
+  (the neuron-3872 cluster); every other layer's ge50 population is selective.
+- **L00 is anomalous but in the opposite direction:** only 2,037/8,000 latents
+  fire >=20 tokens, eff_p50 49.6, top1_max 0.391, zero ge50 — the L00 dictionary
+  is both sparser-firing AND non-concentrated (consistent with its 30.1k-alive
+  raw-acts census profile).
+- Late-early band L17–L29 mostly yields 0–2 ge50 per layer (L23, L31: zero) —
+  the concentration map is patchy, not monotonic, between L16 and L57.
+
