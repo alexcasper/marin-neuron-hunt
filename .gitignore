@@ -14,3 +14,6 @@ data/*.log
 # runtime/tool state, nested repos — not lane content
 .entire/
 hunt/
+hunt-sae/
+hunt-sae-*/
+data/derived/
