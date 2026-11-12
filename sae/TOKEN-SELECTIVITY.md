@@ -22,7 +22,7 @@ Columns, per (layer, neuron, pole), pole = sign of `silu(gate)·up`:
 - Pass 2 only: `top_token_lift` = top_token_share ÷ that token's corpus frequency. ≫1 means selective; ≈1 means the token is simply common.
 
 Neuron/pole pairs with no firings have no row (e.g. L57-N3872 has no negative
-pole). That's 24 missing in pass 1 and 3,417 in pass 2.
+pole). That's 24 missing in pass 1 and 3,273 in pass 2 (of 3,538,944 possible).
 
 Verification: independent Python/numpy recomputes, straight from the source
 parquets without duckdb in the stat path, MATCH on every column.
