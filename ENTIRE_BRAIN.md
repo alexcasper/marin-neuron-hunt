@@ -1,6 +1,6 @@
 # ENTIRE_BRAIN.md — ops_sh / Marin-32B neuron lane
 
-Current as of 2026-11-13 23:17 UTC. Facts below come from the checked-in project
+Current as of 2026-11-14 02:30 UTC. Facts below come from the checked-in project
 docs/beads, the verified local data pull, and live Hugging Face API/tree reads
 (`repo_info(..., files_metadata=True)`); sizes are decimal GB from HF-reported
 bytes unless marked GiB.
@@ -41,6 +41,9 @@ On dawn, Entire must use the file token store because there is no
   the token-selectivity dataset.
 - `sae/ATTRIBUTION-ENC-15LAYERS-2026-11-10.md` — 15-layer then 29-layer
   encoder-attribution pass.
+- `docs/candidates/` — 137 provisional per-neuron dossiers plus normalized
+  evidence-grounded working reads (`working_reads.json`) for the full
+  encoder-attribution candidate wave.
 - `hunt/` and `hunt-sae*/` — local worktrees/archives of the hunt repo and SAE
   code snapshots. `hunt-sae/sae/README.md` is the best provenance summary for
   trainer versions and job conventions.
@@ -223,6 +226,11 @@ Local 29-layer staging found 109 selective latents -> 68 distinct candidate
 neurons under `top1 >= 0.5` and `20 <= fired_tokens < 20000`; L27 was the
 strongest mid-layer hotspot, while the large L57 concentration head collapsed
 to the always-on L57-N3872 artifact.
+
+The full 64-layer pass expanded this to **137 distinct candidates**, with
+provisional dossiers and evidence-grounded working reads under
+`docs/candidates/` (working-read priority: 18 high, 42 medium, 77 low). The
+candidate wave and bead mapping remain `sh-8wt` plus its children.
 
 ### 4.6 Station House Spaces
 
