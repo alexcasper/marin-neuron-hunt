@@ -1,0 +1,2977 @@
+[
+ {
+  "id": "L11-N8533",
+  "layer": 11,
+  "neuron": 8533,
+  "latents": [
+   {
+    "latent": 2824,
+    "fired_tokens": 72,
+    "top1_share": 0.6792,
+    "eff_neurons": 2.16
+   },
+   {
+    "latent": 7919,
+    "fired_tokens": 43,
+    "top1_share": 0.587,
+    "eff_neurons": 2.89
+   },
+   {
+    "latent": 22036,
+    "fired_tokens": 49,
+    "top1_share": 0.6874,
+    "eff_neurons": 2.11
+   },
+   {
+    "latent": 23752,
+    "fired_tokens": 46,
+    "top1_share": 0.557,
+    "eff_neurons": 3.21
+   }
+  ],
+  "n_latents": 4,
+  "max_top1_share": 0.6874,
+  "fired_range": [
+   43,
+   72
+  ]
+ },
+ {
+  "id": "L10-N20671",
+  "layer": 10,
+  "neuron": 20671,
+  "latents": [
+   {
+    "latent": 16613,
+    "fired_tokens": 47,
+    "top1_share": 0.6773,
+    "eff_neurons": 2.17
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.6773,
+  "fired_range": [
+   47,
+   47
+  ]
+ },
+ {
+  "id": "L27-N1187",
+  "layer": 27,
+  "neuron": 1187,
+  "latents": [
+   {
+    "latent": 2165,
+    "fired_tokens": 129,
+    "top1_share": 0.5103,
+    "eff_neurons": 3.83
+   },
+   {
+    "latent": 8645,
+    "fired_tokens": 96,
+    "top1_share": 0.5872,
+    "eff_neurons": 2.89
+   },
+   {
+    "latent": 11548,
+    "fired_tokens": 159,
+    "top1_share": 0.5227,
+    "eff_neurons": 3.65
+   },
+   {
+    "latent": 18633,
+    "fired_tokens": 129,
+    "top1_share": 0.5321,
+    "eff_neurons": 3.52
+   },
+   {
+    "latent": 25343,
+    "fired_tokens": 82,
+    "top1_share": 0.5889,
+    "eff_neurons": 2.88
+   },
+   {
+    "latent": 27551,
+    "fired_tokens": 112,
+    "top1_share": 0.5494,
+    "eff_neurons": 3.31
+   },
+   {
+    "latent": 31020,
+    "fired_tokens": 146,
+    "top1_share": 0.5691,
+    "eff_neurons": 3.08
+   },
+   {
+    "latent": 31900,
+    "fired_tokens": 98,
+    "top1_share": 0.6551,
+    "eff_neurons": 2.33
+   },
+   {
+    "latent": 32207,
+    "fired_tokens": 140,
+    "top1_share": 0.5557,
+    "eff_neurons": 3.23
+   },
+   {
+    "latent": 32776,
+    "fired_tokens": 155,
+    "top1_share": 0.5011,
+    "eff_neurons": 3.96
+   },
+   {
+    "latent": 35038,
+    "fired_tokens": 85,
+    "top1_share": 0.5917,
+    "eff_neurons": 2.85
+   },
+   {
+    "latent": 35604,
+    "fired_tokens": 155,
+    "top1_share": 0.5109,
+    "eff_neurons": 3.82
+   },
+   {
+    "latent": 37711,
+    "fired_tokens": 125,
+    "top1_share": 0.5244,
+    "eff_neurons": 3.63
+   },
+   {
+    "latent": 40584,
+    "fired_tokens": 143,
+    "top1_share": 0.5076,
+    "eff_neurons": 3.87
+   },
+   {
+    "latent": 42818,
+    "fired_tokens": 68,
+    "top1_share": 0.5403,
+    "eff_neurons": 3.39
+   }
+  ],
+  "n_latents": 15,
+  "max_top1_share": 0.6551,
+  "fired_range": [
+   68,
+   159
+  ]
+ },
+ {
+  "id": "L4-N25503",
+  "layer": 4,
+  "neuron": 25503,
+  "latents": [
+   {
+    "latent": 36262,
+    "fired_tokens": 70,
+    "top1_share": 0.6506,
+    "eff_neurons": 2.35
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.6506,
+  "fired_range": [
+   70,
+   70
+  ]
+ },
+ {
+  "id": "L6-N5374",
+  "layer": 6,
+  "neuron": 5374,
+  "latents": [
+   {
+    "latent": 17178,
+    "fired_tokens": 67,
+    "top1_share": 0.6447,
+    "eff_neurons": 2.4
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.6447,
+  "fired_range": [
+   67,
+   67
+  ]
+ },
+ {
+  "id": "L62-N9554",
+  "layer": 62,
+  "neuron": 9554,
+  "latents": [
+   {
+    "latent": 1358,
+    "fired_tokens": 31,
+    "top1_share": 0.5989,
+    "eff_neurons": 2.78
+   },
+   {
+    "latent": 4529,
+    "fired_tokens": 32,
+    "top1_share": 0.6417,
+    "eff_neurons": 2.42
+   },
+   {
+    "latent": 7065,
+    "fired_tokens": 35,
+    "top1_share": 0.5759,
+    "eff_neurons": 3.0
+   },
+   {
+    "latent": 21602,
+    "fired_tokens": 48,
+    "top1_share": 0.5056,
+    "eff_neurons": 3.83
+   }
+  ],
+  "n_latents": 4,
+  "max_top1_share": 0.6417,
+  "fired_range": [
+   31,
+   48
+  ]
+ },
+ {
+  "id": "L22-N22450",
+  "layer": 22,
+  "neuron": 22450,
+  "latents": [
+   {
+    "latent": 273,
+    "fired_tokens": 51,
+    "top1_share": 0.5393,
+    "eff_neurons": 3.42
+   },
+   {
+    "latent": 2812,
+    "fired_tokens": 21,
+    "top1_share": 0.6405,
+    "eff_neurons": 2.43
+   },
+   {
+    "latent": 23625,
+    "fired_tokens": 59,
+    "top1_share": 0.5036,
+    "eff_neurons": 3.92
+   },
+   {
+    "latent": 43760,
+    "fired_tokens": 44,
+    "top1_share": 0.5672,
+    "eff_neurons": 3.09
+   }
+  ],
+  "n_latents": 4,
+  "max_top1_share": 0.6405,
+  "fired_range": [
+   21,
+   59
+  ]
+ },
+ {
+  "id": "L11-N5811",
+  "layer": 11,
+  "neuron": 5811,
+  "latents": [
+   {
+    "latent": 4484,
+    "fired_tokens": 331,
+    "top1_share": 0.5256,
+    "eff_neurons": 3.61
+   },
+   {
+    "latent": 25248,
+    "fired_tokens": 81,
+    "top1_share": 0.5948,
+    "eff_neurons": 2.81
+   },
+   {
+    "latent": 27679,
+    "fired_tokens": 197,
+    "top1_share": 0.6232,
+    "eff_neurons": 2.57
+   }
+  ],
+  "n_latents": 3,
+  "max_top1_share": 0.6232,
+  "fired_range": [
+   81,
+   331
+  ]
+ },
+ {
+  "id": "L62-N4855",
+  "layer": 62,
+  "neuron": 4855,
+  "latents": [
+   {
+    "latent": 9705,
+    "fired_tokens": 109,
+    "top1_share": 0.5188,
+    "eff_neurons": 3.7
+   },
+   {
+    "latent": 17752,
+    "fired_tokens": 23,
+    "top1_share": 0.6215,
+    "eff_neurons": 2.59
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.6215,
+  "fired_range": [
+   23,
+   109
+  ]
+ },
+ {
+  "id": "L38-N9134",
+  "layer": 38,
+  "neuron": 9134,
+  "latents": [
+   {
+    "latent": 20037,
+    "fired_tokens": 65,
+    "top1_share": 0.6207,
+    "eff_neurons": 2.59
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.6207,
+  "fired_range": [
+   65,
+   65
+  ]
+ },
+ {
+  "id": "L40-N4441",
+  "layer": 40,
+  "neuron": 4441,
+  "latents": [
+   {
+    "latent": 14388,
+    "fired_tokens": 31,
+    "top1_share": 0.6173,
+    "eff_neurons": 2.62
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.6173,
+  "fired_range": [
+   31,
+   31
+  ]
+ },
+ {
+  "id": "L49-N895",
+  "layer": 49,
+  "neuron": 895,
+  "latents": [
+   {
+    "latent": 1258,
+    "fired_tokens": 10199,
+    "top1_share": 0.6048,
+    "eff_neurons": 2.71
+   },
+   {
+    "latent": 3761,
+    "fired_tokens": 11924,
+    "top1_share": 0.6026,
+    "eff_neurons": 2.73
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.6048,
+  "fired_range": [
+   10199,
+   11924
+  ]
+ },
+ {
+  "id": "L55-N10278",
+  "layer": 55,
+  "neuron": 10278,
+  "latents": [
+   {
+    "latent": 3729,
+    "fired_tokens": 13814,
+    "top1_share": 0.5177,
+    "eff_neurons": 3.7
+   },
+   {
+    "latent": 6106,
+    "fired_tokens": 3593,
+    "top1_share": 0.5634,
+    "eff_neurons": 3.14
+   },
+   {
+    "latent": 11186,
+    "fired_tokens": 11526,
+    "top1_share": 0.5903,
+    "eff_neurons": 2.86
+   },
+   {
+    "latent": 15267,
+    "fired_tokens": 11860,
+    "top1_share": 0.5968,
+    "eff_neurons": 2.8
+   },
+   {
+    "latent": 18230,
+    "fired_tokens": 13813,
+    "top1_share": 0.5415,
+    "eff_neurons": 3.4
+   }
+  ],
+  "n_latents": 5,
+  "max_top1_share": 0.5968,
+  "fired_range": [
+   3593,
+   13814
+  ]
+ },
+ {
+  "id": "L9-N23934",
+  "layer": 9,
+  "neuron": 23934,
+  "latents": [
+   {
+    "latent": 4574,
+    "fired_tokens": 40,
+    "top1_share": 0.5959,
+    "eff_neurons": 2.81
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5959,
+  "fired_range": [
+   40,
+   40
+  ]
+ },
+ {
+  "id": "L35-N5309",
+  "layer": 35,
+  "neuron": 5309,
+  "latents": [
+   {
+    "latent": 50170,
+    "fired_tokens": 28,
+    "top1_share": 0.5957,
+    "eff_neurons": 2.77
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5957,
+  "fired_range": [
+   28,
+   28
+  ]
+ },
+ {
+  "id": "L12-N26213",
+  "layer": 12,
+  "neuron": 26213,
+  "latents": [
+   {
+    "latent": 21541,
+    "fired_tokens": 26,
+    "top1_share": 0.5873,
+    "eff_neurons": 2.88
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5873,
+  "fired_range": [
+   26,
+   26
+  ]
+ },
+ {
+  "id": "L29-N23842",
+  "layer": 29,
+  "neuron": 23842,
+  "latents": [
+   {
+    "latent": 17525,
+    "fired_tokens": 104,
+    "top1_share": 0.5869,
+    "eff_neurons": 2.9
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5869,
+  "fired_range": [
+   104,
+   104
+  ]
+ },
+ {
+  "id": "L17-N14375",
+  "layer": 17,
+  "neuron": 14375,
+  "latents": [
+   {
+    "latent": 4817,
+    "fired_tokens": 36,
+    "top1_share": 0.5841,
+    "eff_neurons": 2.92
+   },
+   {
+    "latent": 7204,
+    "fired_tokens": 26,
+    "top1_share": 0.5579,
+    "eff_neurons": 3.18
+   },
+   {
+    "latent": 19546,
+    "fired_tokens": 25,
+    "top1_share": 0.585,
+    "eff_neurons": 2.91
+   },
+   {
+    "latent": 31595,
+    "fired_tokens": 38,
+    "top1_share": 0.5095,
+    "eff_neurons": 3.79
+   }
+  ],
+  "n_latents": 4,
+  "max_top1_share": 0.585,
+  "fired_range": [
+   25,
+   38
+  ]
+ },
+ {
+  "id": "L58-N3443",
+  "layer": 58,
+  "neuron": 3443,
+  "latents": [
+   {
+    "latent": 25529,
+    "fired_tokens": 36,
+    "top1_share": 0.5844,
+    "eff_neurons": 2.92
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5844,
+  "fired_range": [
+   36,
+   36
+  ]
+ },
+ {
+  "id": "L34-N26836",
+  "layer": 34,
+  "neuron": 26836,
+  "latents": [
+   {
+    "latent": 6438,
+    "fired_tokens": 39,
+    "top1_share": 0.5843,
+    "eff_neurons": 2.92
+   },
+   {
+    "latent": 8110,
+    "fired_tokens": 41,
+    "top1_share": 0.5789,
+    "eff_neurons": 2.98
+   },
+   {
+    "latent": 45221,
+    "fired_tokens": 42,
+    "top1_share": 0.5578,
+    "eff_neurons": 3.21
+   }
+  ],
+  "n_latents": 3,
+  "max_top1_share": 0.5843,
+  "fired_range": [
+   39,
+   42
+  ]
+ },
+ {
+  "id": "L33-N2459",
+  "layer": 33,
+  "neuron": 2459,
+  "latents": [
+   {
+    "latent": 5594,
+    "fired_tokens": 21,
+    "top1_share": 0.5634,
+    "eff_neurons": 3.15
+   },
+   {
+    "latent": 38416,
+    "fired_tokens": 20,
+    "top1_share": 0.5841,
+    "eff_neurons": 2.93
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5841,
+  "fired_range": [
+   20,
+   21
+  ]
+ },
+ {
+  "id": "L10-N15969",
+  "layer": 10,
+  "neuron": 15969,
+  "latents": [
+   {
+    "latent": 8875,
+    "fired_tokens": 20,
+    "top1_share": 0.5809,
+    "eff_neurons": 2.94
+   },
+   {
+    "latent": 28410,
+    "fired_tokens": 30,
+    "top1_share": 0.5486,
+    "eff_neurons": 3.28
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5809,
+  "fired_range": [
+   20,
+   30
+  ]
+ },
+ {
+  "id": "L16-N6007",
+  "layer": 16,
+  "neuron": 6007,
+  "latents": [
+   {
+    "latent": 17300,
+    "fired_tokens": 49,
+    "top1_share": 0.5797,
+    "eff_neurons": 2.97
+   },
+   {
+    "latent": 36338,
+    "fired_tokens": 23,
+    "top1_share": 0.5233,
+    "eff_neurons": 3.63
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5797,
+  "fired_range": [
+   23,
+   49
+  ]
+ },
+ {
+  "id": "L45-N21413",
+  "layer": 45,
+  "neuron": 21413,
+  "latents": [
+   {
+    "latent": 26523,
+    "fired_tokens": 42,
+    "top1_share": 0.5765,
+    "eff_neurons": 3.01
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5765,
+  "fired_range": [
+   42,
+   42
+  ]
+ },
+ {
+  "id": "L59-N19776",
+  "layer": 59,
+  "neuron": 19776,
+  "latents": [
+   {
+    "latent": 28413,
+    "fired_tokens": 25,
+    "top1_share": 0.5764,
+    "eff_neurons": 3.0
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5764,
+  "fired_range": [
+   25,
+   25
+  ]
+ },
+ {
+  "id": "L35-N24020",
+  "layer": 35,
+  "neuron": 24020,
+  "latents": [
+   {
+    "latent": 27530,
+    "fired_tokens": 26,
+    "top1_share": 0.5753,
+    "eff_neurons": 2.99
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5753,
+  "fired_range": [
+   26,
+   26
+  ]
+ },
+ {
+  "id": "L27-N22312",
+  "layer": 27,
+  "neuron": 22312,
+  "latents": [
+   {
+    "latent": 3796,
+    "fired_tokens": 29,
+    "top1_share": 0.5742,
+    "eff_neurons": 3.03
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5742,
+  "fired_range": [
+   29,
+   29
+  ]
+ },
+ {
+  "id": "L29-N12980",
+  "layer": 29,
+  "neuron": 12980,
+  "latents": [
+   {
+    "latent": 3894,
+    "fired_tokens": 53,
+    "top1_share": 0.574,
+    "eff_neurons": 3.03
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.574,
+  "fired_range": [
+   53,
+   53
+  ]
+ },
+ {
+  "id": "L60-N26229",
+  "layer": 60,
+  "neuron": 26229,
+  "latents": [
+   {
+    "latent": 1205,
+    "fired_tokens": 27,
+    "top1_share": 0.5735,
+    "eff_neurons": 3.03
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5735,
+  "fired_range": [
+   27,
+   27
+  ]
+ },
+ {
+  "id": "L20-N27076",
+  "layer": 20,
+  "neuron": 27076,
+  "latents": [
+   {
+    "latent": 16106,
+    "fired_tokens": 50,
+    "top1_share": 0.5689,
+    "eff_neurons": 3.08
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5689,
+  "fired_range": [
+   50,
+   50
+  ]
+ },
+ {
+  "id": "L36-N25354",
+  "layer": 36,
+  "neuron": 25354,
+  "latents": [
+   {
+    "latent": 12770,
+    "fired_tokens": 51,
+    "top1_share": 0.5689,
+    "eff_neurons": 3.02
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5689,
+  "fired_range": [
+   51,
+   51
+  ]
+ },
+ {
+  "id": "L36-N5138",
+  "layer": 36,
+  "neuron": 5138,
+  "latents": [
+   {
+    "latent": 2424,
+    "fired_tokens": 39,
+    "top1_share": 0.5672,
+    "eff_neurons": 3.09
+   },
+   {
+    "latent": 29835,
+    "fired_tokens": 46,
+    "top1_share": 0.5202,
+    "eff_neurons": 3.65
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5672,
+  "fired_range": [
+   39,
+   46
+  ]
+ },
+ {
+  "id": "L11-N15351",
+  "layer": 11,
+  "neuron": 15351,
+  "latents": [
+   {
+    "latent": 8895,
+    "fired_tokens": 112,
+    "top1_share": 0.5405,
+    "eff_neurons": 3.4
+   },
+   {
+    "latent": 10089,
+    "fired_tokens": 77,
+    "top1_share": 0.5669,
+    "eff_neurons": 3.1
+   },
+   {
+    "latent": 10314,
+    "fired_tokens": 102,
+    "top1_share": 0.5063,
+    "eff_neurons": 3.85
+   }
+  ],
+  "n_latents": 3,
+  "max_top1_share": 0.5669,
+  "fired_range": [
+   77,
+   112
+  ]
+ },
+ {
+  "id": "L27-N22697",
+  "layer": 27,
+  "neuron": 22697,
+  "latents": [
+   {
+    "latent": 7139,
+    "fired_tokens": 576,
+    "top1_share": 0.5655,
+    "eff_neurons": 3.12
+   },
+   {
+    "latent": 36714,
+    "fired_tokens": 893,
+    "top1_share": 0.5463,
+    "eff_neurons": 3.34
+   },
+   {
+    "latent": 38265,
+    "fired_tokens": 81,
+    "top1_share": 0.5529,
+    "eff_neurons": 3.26
+   },
+   {
+    "latent": 40100,
+    "fired_tokens": 669,
+    "top1_share": 0.5229,
+    "eff_neurons": 3.64
+   }
+  ],
+  "n_latents": 4,
+  "max_top1_share": 0.5655,
+  "fired_range": [
+   81,
+   893
+  ]
+ },
+ {
+  "id": "L7-N20520",
+  "layer": 7,
+  "neuron": 20520,
+  "latents": [
+   {
+    "latent": 23359,
+    "fired_tokens": 395,
+    "top1_share": 0.5184,
+    "eff_neurons": 3.71
+   },
+   {
+    "latent": 24340,
+    "fired_tokens": 390,
+    "top1_share": 0.5629,
+    "eff_neurons": 3.15
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5629,
+  "fired_range": [
+   390,
+   395
+  ]
+ },
+ {
+  "id": "L45-N21163",
+  "layer": 45,
+  "neuron": 21163,
+  "latents": [
+   {
+    "latent": 15137,
+    "fired_tokens": 315,
+    "top1_share": 0.5023,
+    "eff_neurons": 3.95
+   },
+   {
+    "latent": 26460,
+    "fired_tokens": 276,
+    "top1_share": 0.5628,
+    "eff_neurons": 3.15
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5628,
+  "fired_range": [
+   276,
+   315
+  ]
+ },
+ {
+  "id": "L35-N10673",
+  "layer": 35,
+  "neuron": 10673,
+  "latents": [
+   {
+    "latent": 40100,
+    "fired_tokens": 447,
+    "top1_share": 0.5625,
+    "eff_neurons": 3.15
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5625,
+  "fired_range": [
+   447,
+   447
+  ]
+ },
+ {
+  "id": "L47-N26202",
+  "layer": 47,
+  "neuron": 26202,
+  "latents": [
+   {
+    "latent": 2989,
+    "fired_tokens": 172,
+    "top1_share": 0.5622,
+    "eff_neurons": 3.16
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5622,
+  "fired_range": [
+   172,
+   172
+  ]
+ },
+ {
+  "id": "L60-N10309",
+  "layer": 60,
+  "neuron": 10309,
+  "latents": [
+   {
+    "latent": 30207,
+    "fired_tokens": 34,
+    "top1_share": 0.5619,
+    "eff_neurons": 3.15
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5619,
+  "fired_range": [
+   34,
+   34
+  ]
+ },
+ {
+  "id": "L37-N17388",
+  "layer": 37,
+  "neuron": 17388,
+  "latents": [
+   {
+    "latent": 36904,
+    "fired_tokens": 26,
+    "top1_share": 0.5608,
+    "eff_neurons": 3.17
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5608,
+  "fired_range": [
+   26,
+   26
+  ]
+ },
+ {
+  "id": "L12-N4205",
+  "layer": 12,
+  "neuron": 4205,
+  "latents": [
+   {
+    "latent": 13240,
+    "fired_tokens": 39,
+    "top1_share": 0.5591,
+    "eff_neurons": 3.19
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5591,
+  "fired_range": [
+   39,
+   39
+  ]
+ },
+ {
+  "id": "L44-N22828",
+  "layer": 44,
+  "neuron": 22828,
+  "latents": [
+   {
+    "latent": 4752,
+    "fired_tokens": 32,
+    "top1_share": 0.5557,
+    "eff_neurons": 3.23
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5557,
+  "fired_range": [
+   32,
+   32
+  ]
+ },
+ {
+  "id": "L27-N9808",
+  "layer": 27,
+  "neuron": 9808,
+  "latents": [
+   {
+    "latent": 4103,
+    "fired_tokens": 20,
+    "top1_share": 0.5533,
+    "eff_neurons": 3.26
+   },
+   {
+    "latent": 13811,
+    "fired_tokens": 55,
+    "top1_share": 0.5099,
+    "eff_neurons": 3.84
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5533,
+  "fired_range": [
+   20,
+   55
+  ]
+ },
+ {
+  "id": "L37-N17833",
+  "layer": 37,
+  "neuron": 17833,
+  "latents": [
+   {
+    "latent": 17228,
+    "fired_tokens": 20,
+    "top1_share": 0.5521,
+    "eff_neurons": 3.27
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5521,
+  "fired_range": [
+   20,
+   20
+  ]
+ },
+ {
+  "id": "L34-N8043",
+  "layer": 34,
+  "neuron": 8043,
+  "latents": [
+   {
+    "latent": 28912,
+    "fired_tokens": 56,
+    "top1_share": 0.5515,
+    "eff_neurons": 3.26
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5515,
+  "fired_range": [
+   56,
+   56
+  ]
+ },
+ {
+  "id": "L62-N16811",
+  "layer": 62,
+  "neuron": 16811,
+  "latents": [
+   {
+    "latent": 16208,
+    "fired_tokens": 21,
+    "top1_share": 0.5515,
+    "eff_neurons": 3.28
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5515,
+  "fired_range": [
+   21,
+   21
+  ]
+ },
+ {
+  "id": "L29-N24910",
+  "layer": 29,
+  "neuron": 24910,
+  "latents": [
+   {
+    "latent": 31582,
+    "fired_tokens": 65,
+    "top1_share": 0.5513,
+    "eff_neurons": 3.27
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5513,
+  "fired_range": [
+   65,
+   65
+  ]
+ },
+ {
+  "id": "L30-N5450",
+  "layer": 30,
+  "neuron": 5450,
+  "latents": [
+   {
+    "latent": 33022,
+    "fired_tokens": 53,
+    "top1_share": 0.55,
+    "eff_neurons": 3.27
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.55,
+  "fired_range": [
+   53,
+   53
+  ]
+ },
+ {
+  "id": "L44-N14525",
+  "layer": 44,
+  "neuron": 14525,
+  "latents": [
+   {
+    "latent": 12688,
+    "fired_tokens": 393,
+    "top1_share": 0.5375,
+    "eff_neurons": 3.45
+   },
+   {
+    "latent": 19205,
+    "fired_tokens": 437,
+    "top1_share": 0.5488,
+    "eff_neurons": 3.31
+   },
+   {
+    "latent": 20728,
+    "fired_tokens": 455,
+    "top1_share": 0.5037,
+    "eff_neurons": 3.93
+   },
+   {
+    "latent": 22723,
+    "fired_tokens": 442,
+    "top1_share": 0.5012,
+    "eff_neurons": 3.97
+   },
+   {
+    "latent": 25815,
+    "fired_tokens": 432,
+    "top1_share": 0.5271,
+    "eff_neurons": 3.59
+   }
+  ],
+  "n_latents": 5,
+  "max_top1_share": 0.5488,
+  "fired_range": [
+   393,
+   455
+  ]
+ },
+ {
+  "id": "L25-N20093",
+  "layer": 25,
+  "neuron": 20093,
+  "latents": [
+   {
+    "latent": 20841,
+    "fired_tokens": 88,
+    "top1_share": 0.5478,
+    "eff_neurons": 3.31
+   },
+   {
+    "latent": 21298,
+    "fired_tokens": 115,
+    "top1_share": 0.5153,
+    "eff_neurons": 3.75
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5478,
+  "fired_range": [
+   88,
+   115
+  ]
+ },
+ {
+  "id": "L12-N7309",
+  "layer": 12,
+  "neuron": 7309,
+  "latents": [
+   {
+    "latent": 17675,
+    "fired_tokens": 275,
+    "top1_share": 0.5477,
+    "eff_neurons": 3.32
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5477,
+  "fired_range": [
+   275,
+   275
+  ]
+ },
+ {
+  "id": "L35-N20498",
+  "layer": 35,
+  "neuron": 20498,
+  "latents": [
+   {
+    "latent": 13168,
+    "fired_tokens": 27,
+    "top1_share": 0.5457,
+    "eff_neurons": 3.35
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5457,
+  "fired_range": [
+   27,
+   27
+  ]
+ },
+ {
+  "id": "L44-N16258",
+  "layer": 44,
+  "neuron": 16258,
+  "latents": [
+   {
+    "latent": 14991,
+    "fired_tokens": 44,
+    "top1_share": 0.5456,
+    "eff_neurons": 3.35
+   },
+   {
+    "latent": 20980,
+    "fired_tokens": 88,
+    "top1_share": 0.5174,
+    "eff_neurons": 3.72
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5456,
+  "fired_range": [
+   44,
+   88
+  ]
+ },
+ {
+  "id": "L25-N19258",
+  "layer": 25,
+  "neuron": 19258,
+  "latents": [
+   {
+    "latent": 21248,
+    "fired_tokens": 26,
+    "top1_share": 0.5448,
+    "eff_neurons": 3.36
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5448,
+  "fired_range": [
+   26,
+   26
+  ]
+ },
+ {
+  "id": "L6-N5700",
+  "layer": 6,
+  "neuron": 5700,
+  "latents": [
+   {
+    "latent": 10346,
+    "fired_tokens": 58,
+    "top1_share": 0.544,
+    "eff_neurons": 3.37
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.544,
+  "fired_range": [
+   58,
+   58
+  ]
+ },
+ {
+  "id": "L37-N5043",
+  "layer": 37,
+  "neuron": 5043,
+  "latents": [
+   {
+    "latent": 11299,
+    "fired_tokens": 38,
+    "top1_share": 0.541,
+    "eff_neurons": 3.34
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.541,
+  "fired_range": [
+   38,
+   38
+  ]
+ },
+ {
+  "id": "L21-N19899",
+  "layer": 21,
+  "neuron": 19899,
+  "latents": [
+   {
+    "latent": 2458,
+    "fired_tokens": 35,
+    "top1_share": 0.5395,
+    "eff_neurons": 3.4
+   },
+   {
+    "latent": 15798,
+    "fired_tokens": 50,
+    "top1_share": 0.5052,
+    "eff_neurons": 3.89
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5395,
+  "fired_range": [
+   35,
+   50
+  ]
+ },
+ {
+  "id": "L36-N27357",
+  "layer": 36,
+  "neuron": 27357,
+  "latents": [
+   {
+    "latent": 20357,
+    "fired_tokens": 31,
+    "top1_share": 0.5395,
+    "eff_neurons": 3.42
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5395,
+  "fired_range": [
+   31,
+   31
+  ]
+ },
+ {
+  "id": "L37-N6076",
+  "layer": 37,
+  "neuron": 6076,
+  "latents": [
+   {
+    "latent": 25590,
+    "fired_tokens": 36,
+    "top1_share": 0.5382,
+    "eff_neurons": 3.45
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5382,
+  "fired_range": [
+   36,
+   36
+  ]
+ },
+ {
+  "id": "L12-N14813",
+  "layer": 12,
+  "neuron": 14813,
+  "latents": [
+   {
+    "latent": 32538,
+    "fired_tokens": 27,
+    "top1_share": 0.5368,
+    "eff_neurons": 3.45
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5368,
+  "fired_range": [
+   27,
+   27
+  ]
+ },
+ {
+  "id": "L59-N557",
+  "layer": 59,
+  "neuron": 557,
+  "latents": [
+   {
+    "latent": 22298,
+    "fired_tokens": 25,
+    "top1_share": 0.5366,
+    "eff_neurons": 3.38
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5366,
+  "fired_range": [
+   25,
+   25
+  ]
+ },
+ {
+  "id": "L63-N17168",
+  "layer": 63,
+  "neuron": 17168,
+  "latents": [
+   {
+    "latent": 8188,
+    "fired_tokens": 20,
+    "top1_share": 0.5364,
+    "eff_neurons": 3.46
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5364,
+  "fired_range": [
+   20,
+   20
+  ]
+ },
+ {
+  "id": "L26-N17855",
+  "layer": 26,
+  "neuron": 17855,
+  "latents": [
+   {
+    "latent": 49716,
+    "fired_tokens": 33,
+    "top1_share": 0.5358,
+    "eff_neurons": 3.48
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5358,
+  "fired_range": [
+   33,
+   33
+  ]
+ },
+ {
+  "id": "L15-N17223",
+  "layer": 15,
+  "neuron": 17223,
+  "latents": [
+   {
+    "latent": 14554,
+    "fired_tokens": 127,
+    "top1_share": 0.5236,
+    "eff_neurons": 3.62
+   },
+   {
+    "latent": 40521,
+    "fired_tokens": 143,
+    "top1_share": 0.5357,
+    "eff_neurons": 3.45
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5357,
+  "fired_range": [
+   127,
+   143
+  ]
+ },
+ {
+  "id": "L36-N4765",
+  "layer": 36,
+  "neuron": 4765,
+  "latents": [
+   {
+    "latent": 12752,
+    "fired_tokens": 37,
+    "top1_share": 0.5353,
+    "eff_neurons": 3.46
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5353,
+  "fired_range": [
+   37,
+   37
+  ]
+ },
+ {
+  "id": "L10-N12917",
+  "layer": 10,
+  "neuron": 12917,
+  "latents": [
+   {
+    "latent": 3931,
+    "fired_tokens": 24,
+    "top1_share": 0.5351,
+    "eff_neurons": 3.47
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5351,
+  "fired_range": [
+   24,
+   24
+  ]
+ },
+ {
+  "id": "L60-N17154",
+  "layer": 60,
+  "neuron": 17154,
+  "latents": [
+   {
+    "latent": 18734,
+    "fired_tokens": 84,
+    "top1_share": 0.5341,
+    "eff_neurons": 3.5
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5341,
+  "fired_range": [
+   84,
+   84
+  ]
+ },
+ {
+  "id": "L11-N2883",
+  "layer": 11,
+  "neuron": 2883,
+  "latents": [
+   {
+    "latent": 11440,
+    "fired_tokens": 22,
+    "top1_share": 0.5339,
+    "eff_neurons": 3.5
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5339,
+  "fired_range": [
+   22,
+   22
+  ]
+ },
+ {
+  "id": "L19-N21740",
+  "layer": 19,
+  "neuron": 21740,
+  "latents": [
+   {
+    "latent": 20523,
+    "fired_tokens": 110,
+    "top1_share": 0.5336,
+    "eff_neurons": 3.49
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5336,
+  "fired_range": [
+   110,
+   110
+  ]
+ },
+ {
+  "id": "L36-N16585",
+  "layer": 36,
+  "neuron": 16585,
+  "latents": [
+   {
+    "latent": 1785,
+    "fired_tokens": 20,
+    "top1_share": 0.5325,
+    "eff_neurons": 3.49
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5325,
+  "fired_range": [
+   20,
+   20
+  ]
+ },
+ {
+  "id": "L13-N11930",
+  "layer": 13,
+  "neuron": 11930,
+  "latents": [
+   {
+    "latent": 28599,
+    "fired_tokens": 122,
+    "top1_share": 0.5316,
+    "eff_neurons": 3.5
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5316,
+  "fired_range": [
+   122,
+   122
+  ]
+ },
+ {
+  "id": "L11-N24556",
+  "layer": 11,
+  "neuron": 24556,
+  "latents": [
+   {
+    "latent": 7546,
+    "fired_tokens": 127,
+    "top1_share": 0.5311,
+    "eff_neurons": 3.53
+   },
+   {
+    "latent": 11139,
+    "fired_tokens": 126,
+    "top1_share": 0.5191,
+    "eff_neurons": 3.7
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5311,
+  "fired_range": [
+   126,
+   127
+  ]
+ },
+ {
+  "id": "L18-N12330",
+  "layer": 18,
+  "neuron": 12330,
+  "latents": [
+   {
+    "latent": 35030,
+    "fired_tokens": 80,
+    "top1_share": 0.5298,
+    "eff_neurons": 3.55
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5298,
+  "fired_range": [
+   80,
+   80
+  ]
+ },
+ {
+  "id": "L10-N21821",
+  "layer": 10,
+  "neuron": 21821,
+  "latents": [
+   {
+    "latent": 2614,
+    "fired_tokens": 111,
+    "top1_share": 0.5291,
+    "eff_neurons": 3.55
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5291,
+  "fired_range": [
+   111,
+   111
+  ]
+ },
+ {
+  "id": "L27-N23150",
+  "layer": 27,
+  "neuron": 23150,
+  "latents": [
+   {
+    "latent": 14614,
+    "fired_tokens": 230,
+    "top1_share": 0.5282,
+    "eff_neurons": 3.58
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5282,
+  "fired_range": [
+   230,
+   230
+  ]
+ },
+ {
+  "id": "L15-N8204",
+  "layer": 15,
+  "neuron": 8204,
+  "latents": [
+   {
+    "latent": 34695,
+    "fired_tokens": 132,
+    "top1_share": 0.5277,
+    "eff_neurons": 3.56
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5277,
+  "fired_range": [
+   132,
+   132
+  ]
+ },
+ {
+  "id": "L22-N18816",
+  "layer": 22,
+  "neuron": 18816,
+  "latents": [
+   {
+    "latent": 1377,
+    "fired_tokens": 24,
+    "top1_share": 0.5208,
+    "eff_neurons": 3.66
+   },
+   {
+    "latent": 17878,
+    "fired_tokens": 20,
+    "top1_share": 0.5275,
+    "eff_neurons": 3.56
+   },
+   {
+    "latent": 20478,
+    "fired_tokens": 24,
+    "top1_share": 0.5182,
+    "eff_neurons": 3.7
+   }
+  ],
+  "n_latents": 3,
+  "max_top1_share": 0.5275,
+  "fired_range": [
+   20,
+   24
+  ]
+ },
+ {
+  "id": "L27-N27558",
+  "layer": 27,
+  "neuron": 27558,
+  "latents": [
+   {
+    "latent": 19876,
+    "fired_tokens": 42,
+    "top1_share": 0.5275,
+    "eff_neurons": 3.59
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5275,
+  "fired_range": [
+   42,
+   42
+  ]
+ },
+ {
+  "id": "L39-N15151",
+  "layer": 39,
+  "neuron": 15151,
+  "latents": [
+   {
+    "latent": 9094,
+    "fired_tokens": 24,
+    "top1_share": 0.5269,
+    "eff_neurons": 3.57
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5269,
+  "fired_range": [
+   24,
+   24
+  ]
+ },
+ {
+  "id": "L46-N5406",
+  "layer": 46,
+  "neuron": 5406,
+  "latents": [
+   {
+    "latent": 7170,
+    "fired_tokens": 116,
+    "top1_share": 0.5267,
+    "eff_neurons": 3.54
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5267,
+  "fired_range": [
+   116,
+   116
+  ]
+ },
+ {
+  "id": "L8-N9298",
+  "layer": 8,
+  "neuron": 9298,
+  "latents": [
+   {
+    "latent": 1334,
+    "fired_tokens": 42,
+    "top1_share": 0.5038,
+    "eff_neurons": 3.92
+   },
+   {
+    "latent": 13597,
+    "fired_tokens": 25,
+    "top1_share": 0.5235,
+    "eff_neurons": 3.48
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5235,
+  "fired_range": [
+   25,
+   42
+  ]
+ },
+ {
+  "id": "L8-N10861",
+  "layer": 8,
+  "neuron": 10861,
+  "latents": [
+   {
+    "latent": 28459,
+    "fired_tokens": 23,
+    "top1_share": 0.5232,
+    "eff_neurons": 3.61
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5232,
+  "fired_range": [
+   23,
+   23
+  ]
+ },
+ {
+  "id": "L11-N134",
+  "layer": 11,
+  "neuron": 134,
+  "latents": [
+   {
+    "latent": 24153,
+    "fired_tokens": 106,
+    "top1_share": 0.5231,
+    "eff_neurons": 3.64
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5231,
+  "fired_range": [
+   106,
+   106
+  ]
+ },
+ {
+  "id": "L12-N8027",
+  "layer": 12,
+  "neuron": 8027,
+  "latents": [
+   {
+    "latent": 27525,
+    "fired_tokens": 65,
+    "top1_share": 0.5231,
+    "eff_neurons": 3.62
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5231,
+  "fired_range": [
+   65,
+   65
+  ]
+ },
+ {
+  "id": "L29-N24862",
+  "layer": 29,
+  "neuron": 24862,
+  "latents": [
+   {
+    "latent": 7144,
+    "fired_tokens": 63,
+    "top1_share": 0.5231,
+    "eff_neurons": 3.65
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5231,
+  "fired_range": [
+   63,
+   63
+  ]
+ },
+ {
+  "id": "L35-N7530",
+  "layer": 35,
+  "neuron": 7530,
+  "latents": [
+   {
+    "latent": 1769,
+    "fired_tokens": 46,
+    "top1_share": 0.5229,
+    "eff_neurons": 3.64
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5229,
+  "fired_range": [
+   46,
+   46
+  ]
+ },
+ {
+  "id": "L36-N16965",
+  "layer": 36,
+  "neuron": 16965,
+  "latents": [
+   {
+    "latent": 36706,
+    "fired_tokens": 42,
+    "top1_share": 0.5228,
+    "eff_neurons": 3.65
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5228,
+  "fired_range": [
+   42,
+   42
+  ]
+ },
+ {
+  "id": "L42-N9154",
+  "layer": 42,
+  "neuron": 9154,
+  "latents": [
+   {
+    "latent": 5736,
+    "fired_tokens": 49,
+    "top1_share": 0.521,
+    "eff_neurons": 3.68
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.521,
+  "fired_range": [
+   49,
+   49
+  ]
+ },
+ {
+  "id": "L33-N18287",
+  "layer": 33,
+  "neuron": 18287,
+  "latents": [
+   {
+    "latent": 24625,
+    "fired_tokens": 87,
+    "top1_share": 0.5201,
+    "eff_neurons": 3.66
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5201,
+  "fired_range": [
+   87,
+   87
+  ]
+ },
+ {
+  "id": "L59-N11005",
+  "layer": 59,
+  "neuron": 11005,
+  "latents": [
+   {
+    "latent": 18160,
+    "fired_tokens": 138,
+    "top1_share": 0.5198,
+    "eff_neurons": 3.69
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5198,
+  "fired_range": [
+   138,
+   138
+  ]
+ },
+ {
+  "id": "L36-N14337",
+  "layer": 36,
+  "neuron": 14337,
+  "latents": [
+   {
+    "latent": 20671,
+    "fired_tokens": 134,
+    "top1_share": 0.5188,
+    "eff_neurons": 3.68
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5188,
+  "fired_range": [
+   134,
+   134
+  ]
+ },
+ {
+  "id": "L22-N26066",
+  "layer": 22,
+  "neuron": 26066,
+  "latents": [
+   {
+    "latent": 33378,
+    "fired_tokens": 39,
+    "top1_share": 0.5183,
+    "eff_neurons": 3.71
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5183,
+  "fired_range": [
+   39,
+   39
+  ]
+ },
+ {
+  "id": "L37-N7052",
+  "layer": 37,
+  "neuron": 7052,
+  "latents": [
+   {
+    "latent": 27404,
+    "fired_tokens": 57,
+    "top1_share": 0.5175,
+    "eff_neurons": 3.7
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5175,
+  "fired_range": [
+   57,
+   57
+  ]
+ },
+ {
+  "id": "L48-N18063",
+  "layer": 48,
+  "neuron": 18063,
+  "latents": [
+   {
+    "latent": 10326,
+    "fired_tokens": 6685,
+    "top1_share": 0.5174,
+    "eff_neurons": 3.73
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5174,
+  "fired_range": [
+   6685,
+   6685
+  ]
+ },
+ {
+  "id": "L35-N9217",
+  "layer": 35,
+  "neuron": 9217,
+  "latents": [
+   {
+    "latent": 7483,
+    "fired_tokens": 29,
+    "top1_share": 0.517,
+    "eff_neurons": 3.72
+   },
+   {
+    "latent": 38044,
+    "fired_tokens": 77,
+    "top1_share": 0.5002,
+    "eff_neurons": 3.93
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.517,
+  "fired_range": [
+   29,
+   77
+  ]
+ },
+ {
+  "id": "L45-N4166",
+  "layer": 45,
+  "neuron": 4166,
+  "latents": [
+   {
+    "latent": 20449,
+    "fired_tokens": 115,
+    "top1_share": 0.517,
+    "eff_neurons": 3.73
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.517,
+  "fired_range": [
+   115,
+   115
+  ]
+ },
+ {
+  "id": "L24-N8156",
+  "layer": 24,
+  "neuron": 8156,
+  "latents": [
+   {
+    "latent": 27381,
+    "fired_tokens": 24,
+    "top1_share": 0.5161,
+    "eff_neurons": 3.75
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5161,
+  "fired_range": [
+   24,
+   24
+  ]
+ },
+ {
+  "id": "L42-N873",
+  "layer": 42,
+  "neuron": 873,
+  "latents": [
+   {
+    "latent": 28831,
+    "fired_tokens": 31,
+    "top1_share": 0.5148,
+    "eff_neurons": 3.74
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5148,
+  "fired_range": [
+   31,
+   31
+  ]
+ },
+ {
+  "id": "L35-N2631",
+  "layer": 35,
+  "neuron": 2631,
+  "latents": [
+   {
+    "latent": 13316,
+    "fired_tokens": 56,
+    "top1_share": 0.5146,
+    "eff_neurons": 3.75
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5146,
+  "fired_range": [
+   56,
+   56
+  ]
+ },
+ {
+  "id": "L17-N9960",
+  "layer": 17,
+  "neuron": 9960,
+  "latents": [
+   {
+    "latent": 8991,
+    "fired_tokens": 49,
+    "top1_share": 0.5138,
+    "eff_neurons": 3.77
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5138,
+  "fired_range": [
+   49,
+   49
+  ]
+ },
+ {
+  "id": "L59-N11448",
+  "layer": 59,
+  "neuron": 11448,
+  "latents": [
+   {
+    "latent": 2039,
+    "fired_tokens": 210,
+    "top1_share": 0.5136,
+    "eff_neurons": 3.79
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5136,
+  "fired_range": [
+   210,
+   210
+  ]
+ },
+ {
+  "id": "L16-N3305",
+  "layer": 16,
+  "neuron": 3305,
+  "latents": [
+   {
+    "latent": 24205,
+    "fired_tokens": 34,
+    "top1_share": 0.5134,
+    "eff_neurons": 3.78
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5134,
+  "fired_range": [
+   34,
+   34
+  ]
+ },
+ {
+  "id": "L12-N6048",
+  "layer": 12,
+  "neuron": 6048,
+  "latents": [
+   {
+    "latent": 14189,
+    "fired_tokens": 45,
+    "top1_share": 0.5114,
+    "eff_neurons": 3.8
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5114,
+  "fired_range": [
+   45,
+   45
+  ]
+ },
+ {
+  "id": "L22-N5747",
+  "layer": 22,
+  "neuron": 5747,
+  "latents": [
+   {
+    "latent": 17795,
+    "fired_tokens": 49,
+    "top1_share": 0.5113,
+    "eff_neurons": 3.81
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5113,
+  "fired_range": [
+   49,
+   49
+  ]
+ },
+ {
+  "id": "L45-N14989",
+  "layer": 45,
+  "neuron": 14989,
+  "latents": [
+   {
+    "latent": 9096,
+    "fired_tokens": 24,
+    "top1_share": 0.5111,
+    "eff_neurons": 3.82
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5111,
+  "fired_range": [
+   24,
+   24
+  ]
+ },
+ {
+  "id": "L9-N12281",
+  "layer": 9,
+  "neuron": 12281,
+  "latents": [
+   {
+    "latent": 28895,
+    "fired_tokens": 147,
+    "top1_share": 0.5103,
+    "eff_neurons": 3.83
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5103,
+  "fired_range": [
+   147,
+   147
+  ]
+ },
+ {
+  "id": "L46-N23521",
+  "layer": 46,
+  "neuron": 23521,
+  "latents": [
+   {
+    "latent": 15503,
+    "fired_tokens": 564,
+    "top1_share": 0.5097,
+    "eff_neurons": 3.84
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5097,
+  "fired_range": [
+   564,
+   564
+  ]
+ },
+ {
+  "id": "L26-N11025",
+  "layer": 26,
+  "neuron": 11025,
+  "latents": [
+   {
+    "latent": 35764,
+    "fired_tokens": 114,
+    "top1_share": 0.509,
+    "eff_neurons": 3.84
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.509,
+  "fired_range": [
+   114,
+   114
+  ]
+ },
+ {
+  "id": "L28-N22988",
+  "layer": 28,
+  "neuron": 22988,
+  "latents": [
+   {
+    "latent": 5541,
+    "fired_tokens": 26,
+    "top1_share": 0.5086,
+    "eff_neurons": 3.8
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5086,
+  "fired_range": [
+   26,
+   26
+  ]
+ },
+ {
+  "id": "L27-N15105",
+  "layer": 27,
+  "neuron": 15105,
+  "latents": [
+   {
+    "latent": 17195,
+    "fired_tokens": 93,
+    "top1_share": 0.5078,
+    "eff_neurons": 3.87
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5078,
+  "fired_range": [
+   93,
+   93
+  ]
+ },
+ {
+  "id": "L63-N11857",
+  "layer": 63,
+  "neuron": 11857,
+  "latents": [
+   {
+    "latent": 12969,
+    "fired_tokens": 648,
+    "top1_share": 0.5076,
+    "eff_neurons": 3.84
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5076,
+  "fired_range": [
+   648,
+   648
+  ]
+ },
+ {
+  "id": "L35-N8512",
+  "layer": 35,
+  "neuron": 8512,
+  "latents": [
+   {
+    "latent": 22924,
+    "fired_tokens": 84,
+    "top1_share": 0.5073,
+    "eff_neurons": 3.88
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5073,
+  "fired_range": [
+   84,
+   84
+  ]
+ },
+ {
+  "id": "L30-N10652",
+  "layer": 30,
+  "neuron": 10652,
+  "latents": [
+   {
+    "latent": 31250,
+    "fired_tokens": 28,
+    "top1_share": 0.5072,
+    "eff_neurons": 3.88
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5072,
+  "fired_range": [
+   28,
+   28
+  ]
+ },
+ {
+  "id": "L16-N21335",
+  "layer": 16,
+  "neuron": 21335,
+  "latents": [
+   {
+    "latent": 16843,
+    "fired_tokens": 2856,
+    "top1_share": 0.5067,
+    "eff_neurons": 3.82
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5067,
+  "fired_range": [
+   2856,
+   2856
+  ]
+ },
+ {
+  "id": "L62-N6036",
+  "layer": 62,
+  "neuron": 6036,
+  "latents": [
+   {
+    "latent": 15959,
+    "fired_tokens": 65,
+    "top1_share": 0.5065,
+    "eff_neurons": 3.87
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5065,
+  "fired_range": [
+   65,
+   65
+  ]
+ },
+ {
+  "id": "L16-N22118",
+  "layer": 16,
+  "neuron": 22118,
+  "latents": [
+   {
+    "latent": 17975,
+    "fired_tokens": 25,
+    "top1_share": 0.5062,
+    "eff_neurons": 3.87
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5062,
+  "fired_range": [
+   25,
+   25
+  ]
+ },
+ {
+  "id": "L42-N16424",
+  "layer": 42,
+  "neuron": 16424,
+  "latents": [
+   {
+    "latent": 34007,
+    "fired_tokens": 996,
+    "top1_share": 0.506,
+    "eff_neurons": 3.9
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.506,
+  "fired_range": [
+   996,
+   996
+  ]
+ },
+ {
+  "id": "L29-N25622",
+  "layer": 29,
+  "neuron": 25622,
+  "latents": [
+   {
+    "latent": 21811,
+    "fired_tokens": 21,
+    "top1_share": 0.5054,
+    "eff_neurons": 3.89
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5054,
+  "fired_range": [
+   21,
+   21
+  ]
+ },
+ {
+  "id": "L8-N13193",
+  "layer": 8,
+  "neuron": 13193,
+  "latents": [
+   {
+    "latent": 17359,
+    "fired_tokens": 822,
+    "top1_share": 0.5049,
+    "eff_neurons": 3.91
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5049,
+  "fired_range": [
+   822,
+   822
+  ]
+ },
+ {
+  "id": "L11-N13535",
+  "layer": 11,
+  "neuron": 13535,
+  "latents": [
+   {
+    "latent": 2607,
+    "fired_tokens": 124,
+    "top1_share": 0.5049,
+    "eff_neurons": 3.91
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5049,
+  "fired_range": [
+   124,
+   124
+  ]
+ },
+ {
+  "id": "L11-N13518",
+  "layer": 11,
+  "neuron": 13518,
+  "latents": [
+   {
+    "latent": 22782,
+    "fired_tokens": 108,
+    "top1_share": 0.5045,
+    "eff_neurons": 3.92
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5045,
+  "fired_range": [
+   108,
+   108
+  ]
+ },
+ {
+  "id": "L12-N7352",
+  "layer": 12,
+  "neuron": 7352,
+  "latents": [
+   {
+    "latent": 3783,
+    "fired_tokens": 39,
+    "top1_share": 0.5045,
+    "eff_neurons": 3.91
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5045,
+  "fired_range": [
+   39,
+   39
+  ]
+ },
+ {
+  "id": "L13-N3314",
+  "layer": 13,
+  "neuron": 3314,
+  "latents": [
+   {
+    "latent": 4346,
+    "fired_tokens": 20,
+    "top1_share": 0.5043,
+    "eff_neurons": 3.86
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5043,
+  "fired_range": [
+   20,
+   20
+  ]
+ },
+ {
+  "id": "L50-N18816",
+  "layer": 50,
+  "neuron": 18816,
+  "latents": [
+   {
+    "latent": 5980,
+    "fired_tokens": 43,
+    "top1_share": 0.5043,
+    "eff_neurons": 3.92
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5043,
+  "fired_range": [
+   43,
+   43
+  ]
+ },
+ {
+  "id": "L57-N26033",
+  "layer": 57,
+  "neuron": 26033,
+  "latents": [
+   {
+    "latent": 6377,
+    "fired_tokens": 119,
+    "top1_share": 0.5039,
+    "eff_neurons": 3.93
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5039,
+  "fired_range": [
+   119,
+   119
+  ]
+ },
+ {
+  "id": "L10-N9319",
+  "layer": 10,
+  "neuron": 9319,
+  "latents": [
+   {
+    "latent": 4993,
+    "fired_tokens": 85,
+    "top1_share": 0.5032,
+    "eff_neurons": 3.93
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5032,
+  "fired_range": [
+   85,
+   85
+  ]
+ },
+ {
+  "id": "L28-N20626",
+  "layer": 28,
+  "neuron": 20626,
+  "latents": [
+   {
+    "latent": 43615,
+    "fired_tokens": 206,
+    "top1_share": 0.5031,
+    "eff_neurons": 3.94
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5031,
+  "fired_range": [
+   206,
+   206
+  ]
+ },
+ {
+  "id": "L59-N21614",
+  "layer": 59,
+  "neuron": 21614,
+  "latents": [
+   {
+    "latent": 24526,
+    "fired_tokens": 35,
+    "top1_share": 0.5031,
+    "eff_neurons": 3.75
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5031,
+  "fired_range": [
+   35,
+   35
+  ]
+ },
+ {
+  "id": "L36-N9381",
+  "layer": 36,
+  "neuron": 9381,
+  "latents": [
+   {
+    "latent": 13953,
+    "fired_tokens": 62,
+    "top1_share": 0.5027,
+    "eff_neurons": 3.8
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5027,
+  "fired_range": [
+   62,
+   62
+  ]
+ },
+ {
+  "id": "L37-N4754",
+  "layer": 37,
+  "neuron": 4754,
+  "latents": [
+   {
+    "latent": 19581,
+    "fired_tokens": 385,
+    "top1_share": 0.5026,
+    "eff_neurons": 3.95
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5026,
+  "fired_range": [
+   385,
+   385
+  ]
+ },
+ {
+  "id": "L10-N10572",
+  "layer": 10,
+  "neuron": 10572,
+  "latents": [
+   {
+    "latent": 23441,
+    "fired_tokens": 20,
+    "top1_share": 0.502,
+    "eff_neurons": 3.92
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.502,
+  "fired_range": [
+   20,
+   20
+  ]
+ },
+ {
+  "id": "L10-N6998",
+  "layer": 10,
+  "neuron": 6998,
+  "latents": [
+   {
+    "latent": 13115,
+    "fired_tokens": 136,
+    "top1_share": 0.5016,
+    "eff_neurons": 3.93
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5016,
+  "fired_range": [
+   136,
+   136
+  ]
+ },
+ {
+  "id": "L35-N2465",
+  "layer": 35,
+  "neuron": 2465,
+  "latents": [
+   {
+    "latent": 12563,
+    "fired_tokens": 106,
+    "top1_share": 0.5016,
+    "eff_neurons": 3.91
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5016,
+  "fired_range": [
+   106,
+   106
+  ]
+ },
+ {
+  "id": "L16-N15747",
+  "layer": 16,
+  "neuron": 15747,
+  "latents": [
+   {
+    "latent": 16953,
+    "fired_tokens": 65,
+    "top1_share": 0.5004,
+    "eff_neurons": 3.98
+   },
+   {
+    "latent": 26695,
+    "fired_tokens": 69,
+    "top1_share": 0.5009,
+    "eff_neurons": 3.97
+   }
+  ],
+  "n_latents": 2,
+  "max_top1_share": 0.5009,
+  "fired_range": [
+   65,
+   69
+  ]
+ },
+ {
+  "id": "L7-N19201",
+  "layer": 7,
+  "neuron": 19201,
+  "latents": [
+   {
+    "latent": 14106,
+    "fired_tokens": 444,
+    "top1_share": 0.5006,
+    "eff_neurons": 3.97
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5006,
+  "fired_range": [
+   444,
+   444
+  ]
+ },
+ {
+  "id": "L9-N24830",
+  "layer": 9,
+  "neuron": 24830,
+  "latents": [
+   {
+    "latent": 12612,
+    "fired_tokens": 258,
+    "top1_share": 0.5002,
+    "eff_neurons": 3.97
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5002,
+  "fired_range": [
+   258,
+   258
+  ]
+ },
+ {
+  "id": "L37-N24889",
+  "layer": 37,
+  "neuron": 24889,
+  "latents": [
+   {
+    "latent": 1274,
+    "fired_tokens": 21,
+    "top1_share": 0.5,
+    "eff_neurons": 3.84
+   }
+  ],
+  "n_latents": 1,
+  "max_top1_share": 0.5,
+  "fired_range": [
+   21,
+   21
+  ]
+ }
+]
