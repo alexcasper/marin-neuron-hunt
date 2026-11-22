@@ -44,7 +44,7 @@ if __name__ == "__main__":
     fvu_num, fvu_den, n_tok = 0.0, 0.0, 0
     with torch.no_grad():
         for x in batches(parquet, 1024, scale_vec):
-            x = x.to("cuda:0").to(torch.bfloat16)
+            x = torch.from_numpy(x).to("cuda:0").to(torch.bfloat16)
             out = sae(x)
             resid = x - out.sae_out
             fvu_num += (resid.float() ** 2).sum().item()

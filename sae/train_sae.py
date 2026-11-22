@@ -6,16 +6,23 @@ reconstructs dense per-token MLP activation vectors (silu(gate)*up, normalized b
 the atlas per-neuron scale), and trains an eai-sparsify TopK SparseCoder.
 
 Launch via ~/torch-rocm-env train_sae.py ...
+
+Convention safety (METRICS.md rule 5, sh-kas 2026-11-22): the layer/scale resolution
+HARD-FAILS on any ambiguity — no silent raw-acts fallback. The resolved convention is
+written to <out-dir>/convention.json and stamped into every train-log record.
 """
-import argparse, json, math, os, time
+import argparse, json, os, re, sys, time
 import numpy as np
 import pyarrow.parquet as pq
 import torch
-from torch.nn.functional import silu
-from sparsify import Sae
-from sparsify.config import SparseCoderConfig
 
-D_MODEL_MLP = 27648  # marin-32b SwiGLU neurons per layer (act = silu(gate)*up)
+from sae_conventions import (
+    D_MODEL_MLP,
+    parse_layer_id, load_scale_vec, batches, val_batches,
+)
+
+# Back-compat re-exports (sae_stats.py and other tools import these from train_sae)
+load_scales_vec = load_scale_vec
 
 
 def parse_args():
@@ -30,6 +37,14 @@ def parse_args():
     p.add_argument("--batch-tokens", type=int, default=2048)
     p.add_argument("--steps", type=int, default=12500)
     p.add_argument("--lr", type=float, default=3e-4)
+    p.add_argument("--warmup-steps", type=int, default=500,
+                   help="linear LR warmup steps (0 = off); linear decay to 0 at --steps follows")
+    p.add_argument("--no-lr-decay", action="store_true",
+                   help="disable linear decay after warmup (constant lr after warmup)")
+    p.add_argument("--auxk-alpha", type=float, default=0.03125,
+                   help="AuxK dead-latent loss weight (0 = disabled; sparsify semantics)")
+    p.add_argument("--dead-tokens", type=int, default=10_000_000,
+                   help="a latent counts as dead when it has not fired in this many tokens")
     p.add_argument("--log-every", type=int, default=50)
     p.add_argument("--save-every", type=int, default=0, help="0 = only final save")
     p.add_argument("--init-from", default="", help="checkpoint dir to warm-start from")
@@ -44,54 +59,6 @@ def parse_args():
     p.add_argument("--l2-norm-input", action="store_true", help="L2-normalize each input vector (kills scale heterogeneity)")
     p.add_argument("--seed", type=int, default=20261026)
     return p.parse_args()
-
-
-def load_scales(path):
-    t = pq.read_table(path, columns=["layer", "neuron", "scale"])
-    d = t.to_pydict()
-    # scales are per (layer, neuron); caller trains one layer at a time
-    return d  # caller filters by layer
-
-
-def load_scales_vec(scale_parquet, layer_id, d_model=D_MODEL_MLP):
-    """Per-neuron normalization scale for one layer (max(scale, 1e-4))."""
-    t = pq.read_table(scale_parquet)
-    lay = t.column("layer").to_numpy()
-    neu = t.column("neuron").to_numpy()
-    scl = t.column("scale").to_numpy()
-    vec = np.full(d_model, 1e-4, dtype=np.float32)
-    sel = lay == layer_id
-    vec[neu[sel]] = np.maximum(scl[sel].astype(np.float32), 1e-4)
-    return vec
-
-
-def batches(parquet_path, batch_tokens, scales_by_neuron=None, max_rows=None):
-    """Yield dense fp32 CPU batches [B, 27648]; 64 rows per token.
-    max_rows caps the training stream (rows beyond it, e.g. a val holdout, are skipped)."""
-    pf = pq.ParquetFile(parquet_path)
-    rows_per_batch = batch_tokens * 64
-    emitted = 0
-    for rb in pf.iter_batches(batch_size=rows_per_batch, columns=["token_idx", "neuron", "gate", "up"]):
-        n = rb.num_rows
-        if max_rows is not None and emitted + n > max_rows:
-            rb = rb.slice(0, max_rows - emitted)
-            n = rb.num_rows
-        if n == 0:
-            return
-        assert n % 64 == 0
-        tok = rb.column("token_idx").to_numpy()
-        neu = rb.column("neuron").to_numpy()
-        gate = rb.column("gate").to_numpy().astype(np.float32)
-        up = rb.column("up").to_numpy().astype(np.float32)
-        B = n // 64
-        # contiguity check: token_idx strictly non-decreasing per row-block of 64
-        x = np.zeros((B, D_MODEL_MLP), dtype=np.float32)
-        act = gate / (1.0 + np.exp(-gate)) * up  # silu(gate)*up
-        if scales_by_neuron is not None:
-            act = act / scales_by_neuron[neu]
-        flat_b = np.repeat(np.arange(B, dtype=np.int64), 64)
-        x[flat_b, neu] = act
-        yield torch.from_numpy(x)
 
 
 def prefetch(source_factory, depth=4):
@@ -112,66 +79,35 @@ def prefetch(source_factory, depth=4):
         yield q.get()
 
 
-def _tail_batches(pf, start_row, batch_tokens):
-    """Yield pyarrow RecordBatches covering rows [start_row, end), aligned to 64."""
-    import pyarrow as pa
-    md = pf.metadata
-    spans = []
-    pos = 0
-    for g in range(md.num_row_groups):
-        spans.append((pos, md.row_group(g).num_rows))
-        pos += md.row_group(g).num_rows
-    buf = None
-    for gi, (gstart, gsize) in enumerate(spans):
-        gend = gstart + gsize
-        if gend <= start_row:
-            continue
-        take_start = max(start_row, gstart)
-        tbl = pf.read_row_group(gi, columns=["token_idx", "neuron", "gate", "up"])
-        tbl = tbl.slice(take_start - gstart, gend - take_start)
-        if buf is not None:
-            tbl = pa.concat_tables([buf, tbl])
-        nb = tbl.num_rows // 64 * 64
-        if nb == 0:
-            buf = tbl
-            continue
-        for i in range(0, nb, batch_tokens * 64):
-            yield tbl.slice(i, min(batch_tokens * 64, nb - i)).combine_chunks()
-        buf = tbl.slice(nb) if tbl.num_rows > nb else None
+def resolve_convention(args):
+    """Layer id + per-neuron scale vector; HARD-FAILS on any ambiguity (METRICS.md rule 5).
 
-
-def val_batches(parquet_path, val_rows, batch_tokens, scales_by_neuron=None, cap_tokens=None):
-    """Validation batches from the trailing val_rows of a token-sorted parquet."""
-    pf = pq.ParquetFile(parquet_path)
-    total = pf.metadata.num_rows
-    start = max(0, total - val_rows)
-    emitted = 0
-    for rb in _tail_batches(pf, start, batch_tokens):
-        n = rb.num_rows
-        if n % 64 != 0:
-            continue
-        tok = rb.column("token_idx").to_numpy()
-        neu = rb.column("neuron").to_numpy()
-        gate = rb.column("gate").to_numpy().astype(np.float32)
-        up = rb.column("up").to_numpy().astype(np.float32)
-        B = n // 64
-        x = np.zeros((B, D_MODEL_MLP), dtype=np.float32)
-        act = gate / (1.0 + np.exp(-gate)) * up
-        if scales_by_neuron is not None:
-            act = act / scales_by_neuron[neu]
-        flat_b = np.repeat(np.arange(B, dtype=np.int64), 64)
-        x[flat_b, neu] = act
-        yield torch.from_numpy(x)
-        emitted += B
-        if cap_tokens and emitted >= cap_tokens:
-            return
+    The 2026-11-07 incident: labels like 'L00w64' failed the old isdigit() parse and
+    training silently proceeded on raw activations. Never again.
+    """
+    try:
+        layer_id = parse_layer_id(args.layer_label)
+    except ValueError as e:
+        sys.exit(f"FATAL: {e} — refusing to train (silent raw-acts fallback caused the "
+                 "2026-11-07 64k-sweep incident; see METRICS.md)")
+    if not os.path.exists(args.scale_parquet):
+        sys.exit(f"FATAL: scale parquet not found: {args.scale_parquet} — refusing to "
+                 "train unscaled (METRICS.md rule 5)")
+    scale_vec = load_scale_vec(args.scale_parquet, layer_id)
+    n_scales = int((scale_vec > 1e-4).sum())
+    if n_scales == 0:
+        sys.exit(f"FATAL: no scales for layer {layer_id} in {args.scale_parquet} — "
+                 "refusing to train unscaled (METRICS.md rule 5)")
+    print(f"convention: layer {layer_id} scaled by per-neuron atlas scale "
+          f"({n_scales}/{scale_vec.shape[0]} neurons) from {args.scale_parquet}", flush=True)
+    return layer_id, scale_vec
 
 
 def val_fvu(sae, parquet_path, val_rows, batch_tokens, scale_vec, dev, cap_tokens):
     num, den = 0.0, 0.0
     with torch.no_grad():
         for x in val_batches(parquet_path, val_rows, 1024, scale_vec, cap_tokens):
-            x = x.to(dev).to(torch.bfloat16)
+            x = torch.from_numpy(x).to(dev).to(torch.bfloat16)
             out = sae(x)
             resid = x.to(torch.bfloat16) - out.sae_out
             num += (resid.float() ** 2).sum().item()
@@ -188,17 +124,21 @@ def main():
     assert torch.cuda.is_available(), "expected HIP device"
     print("device:", torch.cuda.get_device_name(0), flush=True)
 
-    # per-neuron scale for layer normalization (layer inferred from first token rows is
-    # not stored in sparse files; scale table covers all layers -> use max over layers
-    # is WRONG; instead caller must pass the right layer). We default to using the
-    # layer passed via --layer-label when it is "LL" formatted.
-    m = args.layer_label.lstrip("L")
-    layer_id = int(m) if m.isdigit() else None
-    scale_vec = None
-    if layer_id is not None and os.path.exists(args.scale_parquet):
-        scale_vec = load_scales_vec(args.scale_parquet, layer_id)
-        print(f"loaded {int((scale_vec > 1e-4).sum())} scales for layer {layer_id}", flush=True)
+    layer_id, scale_vec = resolve_convention(args)
 
+    convention = {
+        "layer_label": args.layer_label, "layer_id": layer_id,
+        "scale_parquet": args.scale_parquet, "input_convention": "scaled",
+        "n_latents": args.n_latents, "k": args.k,
+        "auxk_alpha": args.auxk_alpha, "dead_tokens": args.dead_tokens,
+        "warmup_steps": args.warmup_steps, "lr_decay": not args.no_lr_decay,
+        "lr": args.lr, "seed": args.seed,
+    }
+    with open(os.path.join(args.out_dir, "convention.json"), "w") as f:
+        json.dump(convention, f, indent=1)
+
+    from sparsify import Sae
+    from sparsify.config import SparseCoderConfig
     cfg = SparseCoderConfig(activation="topk", num_latents=args.n_latents, k=args.k,
                             normalize_decoder=True)
     sae = Sae(d_in=D_MODEL_MLP, cfg=cfg, device=dev, dtype=torch.bfloat16)
@@ -215,7 +155,6 @@ def main():
 
     log_path = os.path.join(args.out_dir, "train_log.jsonl")
     val_hist = []          # [(step, val_fvu)]
-    plateaued_at = None
     train_rows = None
     if args.val_rows > 0:
         _pf = pq.ParquetFile(args.layer_parquet)
@@ -224,32 +163,57 @@ def main():
     t0 = time.time()
     tokens_seen = 0
     step = args.start_step
-    run = True
+    use_auxk = args.auxk_alpha > 0
+    tokens_since_fired = torch.full((args.n_latents,), 1 << 40, device=dev, dtype=torch.long)
     data_iter = prefetch(lambda: batches(args.layer_parquet, args.batch_tokens, scale_vec, max_rows=train_rows))
     for step in range(args.start_step + 1, args.steps + 1):
         try:
-            x = next(data_iter).to(dev, non_blocking=True)
+            x = torch.from_numpy(next(data_iter)).to(dev, non_blocking=True)
         except StopIteration:
             print("data exhausted at step", step, flush=True)
             break
+        # sh-usm: initialize b_dec to the first batch's input mean (skipped on warm-start,
+        # which must preserve the loaded decoder bias)
+        if step == args.start_step + 1 and not args.init_from:
+            sae.b_dec.data.copy_(x.to(torch.bfloat16).mean(dim=0))
+            print("b_dec initialized to first-batch input mean (sh-usm)", flush=True)
+        # sh-f6z: linear warmup then linear decay to 0 at --steps
+        if args.warmup_steps > 0 and step <= args.start_step + args.warmup_steps:
+            lr_now = args.lr * step / max(1, args.start_step + args.warmup_steps)
+        elif not args.no_lr_decay:
+            span = max(1, args.steps - args.start_step - args.warmup_steps)
+            lr_now = args.lr * max(0.0, (args.steps - step) / span)
+        else:
+            lr_now = args.lr
+        for g in opt.param_groups:
+            g["lr"] = lr_now
         x_in = x.to(torch.bfloat16)
         if getattr(args, "l2_norm_input", False):
             x_in = (x_in.float() / (x_in.float().norm(dim=1, keepdim=True) + 1e-8)).to(torch.bfloat16)
-        out = sae(x_in)
+        # sh-074: latents that have not fired in --dead-tokens feed the AuxK loss
+        dead_mask = (tokens_since_fired > args.dead_tokens) if use_auxk else None
+        out = sae(x_in, dead_mask=dead_mask)
         x_hat = out.sae_out
         resid = x_in - x_hat
         fvu = (resid.float() ** 2).sum(dim=1).mean() / (x_in.float() ** 2).sum(dim=1).mean()
         loss = fvu
+        if use_auxk:
+            loss = loss + args.auxk_alpha * out.auxk_loss
         opt.zero_grad(set_to_none=True)
         loss.backward()
         # standard sparsify hygiene
         sae.remove_gradient_parallel_to_decoder_directions()
         opt.step()
         sae.set_decoder_norm_to_unit_norm()
+        # sh-074: sliding dead-window bookkeeping
+        if use_auxk:
+            tokens_since_fired += x.shape[0]
+            tokens_since_fired[out.latent_indices.flatten().long()] = 0
         tokens_seen += x.shape[0]
         if step == 1 or step % args.log_every == 0:
             with torch.no_grad():
                 active = (out.latent_acts > 0).float().sum(dim=1).mean().item()
+                n_dead = int((tokens_since_fired > args.dead_tokens).sum().item()) if use_auxk else -1
             rec = {
                 "step": step, "fvu": float(fvu.item()),
                 "mse": float((resid ** 2).mean().item()),
@@ -257,6 +221,10 @@ def main():
                 "tok_s": round(tokens_seen / (time.time() - t0), 1),
                 "gpu_mem_gib": round(torch.cuda.memory_allocated() / 2**30, 2),
                 "elapsed_min": round((time.time() - t0) / 60, 1),
+                "lr": round(lr_now, 8),
+                "auxk": float(out.auxk_loss.item()) if use_auxk else None,
+                "n_dead": n_dead,
+                "scaled_input": True, "layer_id": layer_id,
             }
             print(json.dumps(rec), flush=True)
             with open(log_path, "a") as f:
@@ -272,9 +240,9 @@ def main():
             print("checkpoint", ck, flush=True)
             # retention: keep ckpts on the keep-grid + the latest; cull the rest
             if args.keep_grid:
-                import shutil, re as _re
+                import shutil
                 for d in os.listdir(args.out_dir):
-                    m = _re.fullmatch(rf"sae_{args.layer_label}_step(\d+)", d)
+                    m = re.fullmatch(rf"sae_{args.layer_label}_step(\d+)", d)
                     if m and int(m.group(1)) != step and int(m.group(1)) % args.keep_grid != 0:
                         shutil.rmtree(os.path.join(args.out_dir, d))
                         print("culled", d, flush=True)
@@ -294,7 +262,6 @@ def main():
                                   "old_val_fvu": old, "rel_improvement": round(rel, 4),
                                   "threshold": args.plateau_thresh}), flush=True)
                 if rel < args.plateau_thresh:
-                    plateaued_at = step
                     ck = os.path.join(args.out_dir, f"sae_{args.layer_label}_plateau_step{step}")
                     sae.save_to_disk(ck)
                     print(json.dumps({"PLATEAU": True, "step": step, "val_fvu": round(v, 6),
