@@ -18,11 +18,17 @@ construction and eval/train mode exonerated.
 
 ## Input conventions by width family (each internally consistent)
 
-| family | input convention | census validity |
-|---|---|---|
-| 64k sweep (all 64 layers) | RAW acts (scale_vec silently None) | only no-scale census (v2) |
-| 128k probe/rollout chain | same train_sae.py — verify label convention before comparing | — |
-| 32k sweep | scale-normalized acts | published censuses valid for 32k |
+| family | input convention | census validity | k |
+|---|---|---|---|
+| 64k sweep, all 64 layers (`L{LL}w64`, APOC) | RAW acts (scale_vec silently None) | only no-scale census (v2) | 32 (`apoc-64k-sweep.sh:36`) |
+| 64k L00 run (dusk, `run_L00_64k.sh`, label `L00`) | scale-normalized (label parsed pre-2026-11-22) | scaled census required | 64 (`run_L00_64k.sh:27`) |
+| 128k probe/rollout chain (`L{LL}w128`) | same train_sae.py — verify label convention before comparing | — | 32 (`apoc-128k-probe.sh:39`); verify rollout before quoting |
+| 32k sweep + 12k topup | scale-normalized acts | published censuses valid for 32k | 32 (`run_topup.sh:43`) |
+
+**Rule 6 (sh-b6h, 2026-11-22): always quote k next to width in any comparison.** The "64k"
+width label spans k=32 (64-layer sweep) and k=64 (dusk L00 run) — a width-only comparison
+across those runs silently compares different sparsity budgets. Verify k from the run script
+or the checkpoint cfg.json before any cross-run table.
 
 ## Rules (all downstream consumption)
 
@@ -38,8 +44,12 @@ construction and eval/train mode exonerated.
 4. **census_fvu (no-scale, convention-matched) is the honest atlas-side
    layer-quality number.** Training-loop val fvu is valid within its own
    convention only.
-5. **Silent fallbacks are bugs**: `train_sae.py` now hard-fails when
-   scale_vec cannot be resolved (never silently None again).
+5. **Silent fallbacks are bugs**: `train_sae.py` hard-fails when scale_vec cannot be
+   resolved (never silently None again). FIXED IN THE CANONICAL REPO 2026-11-22
+   (sh-kas): layer labels parse via `^L(\d+)` in `sae/sae_conventions.py`, scale
+   resolution hard-fails, and the resolved convention is written to
+   `<out-dir>/convention.json` + stamped into train-log records. Runtime copies on
+   dusk/APOC must be re-synced from the repo before the next launch.
 
 ## Implementation notes
 
