@@ -74,3 +74,5 @@
 export:
     auto: true
     git-add: true
+sync:
+    remote: "git+https://github.com/alexcasper/marin-neuron-hunt.git"
