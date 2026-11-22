@@ -75,11 +75,12 @@ L00 tokens (see `data/ckpt-32k-L00-rescaled-raw/rescale_eval.json`).
   reconstruction ⊙s, and score against RAW targets. Equivalently, run the rescaled ckpt
   directly on raw inputs. Do NOT just rescale a scalar fvu — the conversion is per-token,
   per-neuron, not a scalar factor.
-- First executed data point (L00, 1,023 fineweb-10m-sparse tokens, k=32/32,768):
-  32k scaled-convention fvu 0.7021 (its own convention) vs **32k RAW-convention fvu 0.2196**
-  (rescale-eval) vs 64k raw reference 0.7317 (hf-table-64.md, its own census sample — the
-  0.2196-vs-0.7317 pair is NOT yet same-rows-legal; the same-rows 64k eval is pending the
-  sae-64k L00 download). The naive 0.7021-vs-0.7317 comparison was the illegal one.
+- First executed data point (L00, 1,023 fineweb-10m-sparse tokens — SAME target rows for
+  both widths, k=32 both): **32k rescale-eval RAW fvu 0.2196 vs 64k raw fvu 0.1765** —
+  cross-width comparison LEGAL, 64k clearly better once conventions match. The naive
+  own-convention numbers (32k 0.7021 scaled vs 64k 0.7317 raw) had suggested near-parity —
+  that was the illegal comparison. Full record: `docs/rescale-eval-L00.json`. Remaining
+  layers are the same command repeated per layer (tool + procedure ready).
 
 - Recompute encode-side: `sae.encode(x)` against the target rows; fvu =
   mean over rows of ||x - dec(enc(x))||² / ||x||². Do NOT use training-loop

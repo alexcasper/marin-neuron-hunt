@@ -5,5 +5,8 @@
  "fvu_raw_rescaled": 0.21955691277980804,
  "exact_allclose": true,
  "topk_equal": "1023/1023",
- "ref_64k_raw_L00": 0.7317
+ "ref_64k_raw_L00": 0.7317,
+ "same_rows_64k_raw_fvu": 0.1765,
+ "legal_comparison": true,
+ "64k_alive_latents_in_sample": 2953
 }
