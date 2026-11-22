@@ -53,6 +53,34 @@ or the checkpoint cfg.json before any cross-run table.
 
 ## Implementation notes
 
+### Convention rescale mapping (sh-1ls, alex RESCALE decision 2026-11-22)
+
+Cross-width comparisons are LEGAL via exact reparameterization — no retrain needed.
+`sae/rescale_sae.py` converts a scaled-convention checkpoint to raw (or inverse):
+
+    W_enc' [j,i] = W_enc[j,i] / s_i      b_dec' = s ⊙ b_dec      W_dec'[j,i] = W_dec[j,i] · s_i
+
+(b_enc unchanged). Exactness: (x − s⊙b_dec)⊘s = x/s − b_dec, so the encoder pre-acts —
+and therefore the TopK selection and codes — are IDENTICAL; and s⊙(z·W_dec) = z·(W_dec⊙s),
+so the raw-space reconstruction is the scaled-space one lifted by ⊙s. Verified on real
+data: original-on-scaled lifted to raw ≡ rescaled-on-raw, TopK sets equal on 1023/1023
+L00 tokens (see `data/ckpt-32k-L00-rescaled-raw/rescale_eval.json`).
+
+**Caveats:**
+- Rescaled checkpoints have NON-unit-norm decoder rows (row norms = s_i). The function is
+  unchanged, but never run `set_decoder_norm_to_unit_norm()` on a rescaled checkpoint, and
+  any decoder-norm-based statistic must expect row norms ≈ the per-neuron scales.
+- Rescaled ckpts are written in F32 (source ckpts are bf16) — 2× file size, no precision loss.
+- A "converted result" means: encode with the ORIGINAL model in its own convention, lift the
+  reconstruction ⊙s, and score against RAW targets. Equivalently, run the rescaled ckpt
+  directly on raw inputs. Do NOT just rescale a scalar fvu — the conversion is per-token,
+  per-neuron, not a scalar factor.
+- First executed data point (L00, 1,023 fineweb-10m-sparse tokens, k=32/32,768):
+  32k scaled-convention fvu 0.7021 (its own convention) vs **32k RAW-convention fvu 0.2196**
+  (rescale-eval) vs 64k raw reference 0.7317 (hf-table-64.md, its own census sample — the
+  0.2196-vs-0.7317 pair is NOT yet same-rows-legal; the same-rows 64k eval is pending the
+  sae-64k L00 download). The naive 0.7021-vs-0.7317 comparison was the illegal one.
+
 - Recompute encode-side: `sae.encode(x)` against the target rows; fvu =
   mean over rows of ||x - dec(enc(x))||² / ||x||². Do NOT use training-loop
   val_log.jsonl values for atlas-facing claims.

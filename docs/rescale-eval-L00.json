@@ -1,0 +1,9 @@
+{
+ "tokens": 1023,
+ "fvu_scaled_orig": 0.7020519971847534,
+ "fvu_raw_lifted_orig": 0.21955691277980804,
+ "fvu_raw_rescaled": 0.21955691277980804,
+ "exact_allclose": true,
+ "topk_equal": "1023/1023",
+ "ref_64k_raw_L00": 0.7317
+}
