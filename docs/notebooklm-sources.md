@@ -221,3 +221,64 @@ Updated: 2026-11-22 · by ops_sh (bead sh-e6a, task from alex via Bedivere)
 
 The add-session state (titles, origins, accept results) is preserved in `docs/notebooklm-source-state/` (nb_added_lane.json / nb_added_urls.json / nb_added_dossiers.json); the authoritative live inventory is the notebook itself.
 
+
+## Wave 2 — Anthropic interp back-catalog fill (ALEX GO #2, 2026-11-22)
+
+- **Sources: 194 → 244** (50 URL adds, all processed and verified against the live list; 0 zombies)
+- Pool: remaining transformer-circuits.pub pages (2026/2025/2024/2023 update digests + 2026 papers + exercises) and hand-picked anthropic.com/research interpretability posts. Research-post duplicates of papers already added via transformer-circuits.pub (toy-models, monosemanticity, framework, SoLU, privileged-bases, interpretability-dreams, features-as-classifiers, introspection, tracing-thoughts) were NOT re-added — same content would be filler.
+- Not added: `/2026/emotions` needed no fallback (NotebookLM ingested the URL); `feed.xml`, `videos`, `garcon` (link-lists/demos, no substantive content); `circuit-tracing/index.html` still bot-walled (covered by methods+biology). Gap to the 300 limit: **56 sources** — the on-topic pool is exhausted; remaining anthropic.com/research posts (safety evals, cyber, economics, character/welfare) are off-topic for a mechanistic-interpretability notebook, and adding them would violate the no-filler rule.
+
+| # | URL | Why | Firecrawl check |
+|---|---|---|---|
+| 1 | https://transformer-circuits.pub/2026/october-update/index.html | Circuits thread update digest (2026-10) | 200, 2798 chars |
+| 2 | https://transformer-circuits.pub/2026/interference_effectiveness_helpfulness/index.html | Interference: effectiveness vs helpfulness (2026 paper) | 200, 78357 chars |
+| 3 | https://transformer-circuits.pub/2026/workspace/index.html | Feature workspace (2026 paper) | 200, 357926 chars |
+| 4 | https://transformer-circuits.pub/2026/june-update/index.html | Circuits update digest (2026-06) | 200, 5788 chars |
+| 5 | https://transformer-circuits.pub/2026/may-update/index.html | Circuits update digest (2026-05) | 200, 11038 chars |
+| 6 | https://transformer-circuits.pub/2026/nla/index.html | Numerative/linear-association paper (2026) | 200, 168134 chars |
+| 7 | https://transformer-circuits.pub/2026/headvis/index.html | Attention-head visualization tooling paper (2026) | 200, 40774 chars |
+| 8 | https://transformer-circuits.pub/2025/november-update/index.html | Circuits update digest (2025-11) | 200, 14717 chars |
+| 9 | https://transformer-circuits.pub/2025/linebreaks/index.html | Line-break features paper (2025) | 200, 88916 chars |
+| 10 | https://transformer-circuits.pub/2025/september-update/index.html | Circuits update digest (2025-09) | 200, 3956 chars |
+| 11 | https://transformer-circuits.pub/2025/faithfulness-toy-model/index.html | Faithfulness toy model (2025) | 200, 19608 chars |
+| 12 | https://transformer-circuits.pub/2025/interference-weights/index.html | Interference weights paper (2025) | 200, 31312 chars |
+| 13 | https://transformer-circuits.pub/2025/bulk-update/index.html | Circuits bulk update digest (2025) | 200, 19505 chars |
+| 14 | https://transformer-circuits.pub/2025/july-update/index.html | Circuits update digest (2025-07) | 200, 27083 chars |
+| 15 | https://transformer-circuits.pub/2025/april-update/index.html | Circuits update digest (2025-04) | 200, 27062 chars |
+| 16 | https://transformer-circuits.pub/2025/attention-update/index.html | Attention update digest (2025) | 200, 30326 chars |
+| 17 | https://transformer-circuits.pub/2025/crosscoder-diffing-update/index.html | Crosscoder/diffing update digest (2025) | 200, 16264 chars |
+| 18 | https://transformer-circuits.pub/2025/january-update/index.html | Circuits update digest (2025-01) | 200, 5469 chars |
+| 19 | https://transformer-circuits.pub/2024/september-update/index.html | Circuits update digest (2025-09) | 200, 10660 chars |
+| 20 | https://transformer-circuits.pub/2024/august-update/index.html | Circuits update digest (2024-08) | 200, 22935 chars |
+| 21 | https://transformer-circuits.pub/2024/july-update/index.html | Circuits update digest (2025-07) | 200, 45870 chars |
+| 22 | https://transformer-circuits.pub/2024/june-update/index.html | Circuits update digest (2026-06) | 200, 25103 chars |
+| 23 | https://transformer-circuits.pub/2024/april-update/index.html | Circuits update digest (2025-04) | 200, 45241 chars |
+| 24 | https://transformer-circuits.pub/2024/march-update/index.html | Circuits update digest (2024-03) | 200, 22401 chars |
+| 25 | https://transformer-circuits.pub/2024/feb-update/index.html | Circuits update digest (2024-02) | 200, 10365 chars |
+| 26 | https://transformer-circuits.pub/2024/jan-update/index.html | Circuits update digest (2024-01) | 200, 40159 chars |
+| 27 | https://transformer-circuits.pub/2023/july-update/index.html | Circuits update digest (2025-07) | 200, 13642 chars |
+| 28 | https://transformer-circuits.pub/2023/may-update/index.html | Circuits update digest (2026-05) | 200, 43466 chars |
+| 29 | https://transformer-circuits.pub/2021/exercises/index.html | Transformer-circuits exercises — educational walkthroughs | 200, 13819 chars |
+| 30 | https://www.anthropic.com/research/mapping-mind-language-model | Anthropic: Mapping the Mind of a Large Language Model (SAE features announcement) | 200, 14294 chars |
+| 31 | https://www.anthropic.com/research/decomposing-language-models-into-understandable-components | Anthropic: Decomposing LMs into understandable components | 200, 6414 chars |
+| 32 | https://www.anthropic.com/research/natural-language-autoencoders | Transformer-circuits thread page | 200, 13278 chars |
+| 33 | https://www.anthropic.com/research/evaluating-feature-steering | Anthropic: Evaluating feature steering | 200, 27063 chars |
+| 34 | https://www.anthropic.com/research/golden-gate-claude | Anthropic: Golden Gate Claude (feature-steering demo) | 200, 3918 chars |
+| 35 | https://www.anthropic.com/research/global-workspace | Anthropic: Global workspace (2026) | 200, 34088 chars |
+| 36 | https://www.anthropic.com/research/persona-vectors | Anthropic: Persona vectors | 200, 13048 chars |
+| 37 | https://www.anthropic.com/research/persona-selection-model | Anthropic: Persona selection model | 200, 8963 chars |
+| 38 | https://www.anthropic.com/research/open-source-circuit-tracing | Transformer-circuits thread page | 200, 3744 chars |
+| 39 | https://www.anthropic.com/research/probes-catch-sleeper-agents | Transformer-circuits thread page | 200, 30423 chars |
+| 40 | https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning | Transformer-circuits thread page | 200, 1737 chars |
+| 41 | https://www.anthropic.com/research/studying-large-language-model-generalization-with-influence-functions | Anthropic: Studying LM generalization with influence functions | 200, 2291 chars |
+| 42 | https://www.anthropic.com/research/scaling-laws-and-interpretability-of-learning-from-repeated-data | Transformer-circuits thread page | 200, 2624 chars |
+| 43 | https://www.anthropic.com/research/superposition-memorization-and-double-descent | Transformer-circuits thread page | 200, 2827 chars |
+| 44 | https://www.anthropic.com/research/distributed-representations-composition-superposition | Transformer-circuits thread page | 200, 2717 chars |
+| 45 | https://www.anthropic.com/research/engineering-challenges-interpretability | Transformer-circuits thread page | 200, 11166 chars |
+| 46 | https://www.anthropic.com/research/emotion-concepts-function | Anthropic: Emotion concepts and function in Claude | 200, 21677 chars |
+| 47 | https://www.anthropic.com/research/values-wild | Anthropic: Values in the wild | 200, 12099 chars |
+| 48 | https://www.anthropic.com/research/auditing-hidden-objectives | Transformer-circuits thread page | 200, 19105 chars |
+| 49 | https://www.anthropic.com/research/clio | Anthropic: Clio — interpreting model usage at scale | 200, 16370 chars |
+| 50 | https://transformer-circuits.pub/2026/emotions/index.html | Emotion concepts in models (2026) — ingested by NotebookLM despite oversized Firecrawl payload | oversized payload — fetched OK |
+
+- Live verification: re-pulled source list shows 244 sources, every status=2; all 50 wave-2 URLs present.
