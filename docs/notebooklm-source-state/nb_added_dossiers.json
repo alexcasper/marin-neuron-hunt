@@ -1,0 +1,836 @@
+[
+ {
+  "file": "sae/hf-README.md",
+  "title": "ops_sh HF artifact README: marin-32b nominate-enc dataset card",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "sae/hf-table-64.md",
+  "title": "ops_sh 64-layer SAE results table (hf-table-64)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L10-N12917.md",
+  "title": "ops_sh candidate dossier L10-N12917 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L10-N15969.md",
+  "title": "ops_sh candidate dossier L10-N15969 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L10-N20671.md",
+  "title": "ops_sh candidate dossier L10-N20671 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L10-N21821.md",
+  "title": "ops_sh candidate dossier L10-N21821 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L10-N6998.md",
+  "title": "ops_sh candidate dossier L10-N6998 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L10-N9319.md",
+  "title": "ops_sh candidate dossier L10-N9319 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L11-N134.md",
+  "title": "ops_sh candidate dossier L11-N134 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L11-N13518.md",
+  "title": "ops_sh candidate dossier L11-N13518 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L11-N13535.md",
+  "title": "ops_sh candidate dossier L11-N13535 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L11-N15351.md",
+  "title": "ops_sh candidate dossier L11-N15351 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L11-N24556.md",
+  "title": "ops_sh candidate dossier L11-N24556 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L11-N2883.md",
+  "title": "ops_sh candidate dossier L11-N2883 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L11-N5811.md",
+  "title": "ops_sh candidate dossier L11-N5811 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L11-N8533.md",
+  "title": "ops_sh candidate dossier L11-N8533 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L12-N14813.md",
+  "title": "ops_sh candidate dossier L12-N14813 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L12-N26213.md",
+  "title": "ops_sh candidate dossier L12-N26213 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L12-N4205.md",
+  "title": "ops_sh candidate dossier L12-N4205 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L12-N6048.md",
+  "title": "ops_sh candidate dossier L12-N6048 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L12-N7309.md",
+  "title": "ops_sh candidate dossier L12-N7309 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L12-N7352.md",
+  "title": "ops_sh candidate dossier L12-N7352 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L12-N8027.md",
+  "title": "ops_sh candidate dossier L12-N8027 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L13-N11930.md",
+  "title": "ops_sh candidate dossier L13-N11930 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L13-N3314.md",
+  "title": "ops_sh candidate dossier L13-N3314 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L15-N17223.md",
+  "title": "ops_sh candidate dossier L15-N17223 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L15-N8204.md",
+  "title": "ops_sh candidate dossier L15-N8204 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L16-N15747.md",
+  "title": "ops_sh candidate dossier L16-N15747 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L16-N21335.md",
+  "title": "ops_sh candidate dossier L16-N21335 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L16-N3305.md",
+  "title": "ops_sh candidate dossier L16-N3305 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L16-N6007.md",
+  "title": "ops_sh candidate dossier L16-N6007 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L17-N14375.md",
+  "title": "ops_sh candidate dossier L17-N14375 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L17-N9960.md",
+  "title": "ops_sh candidate dossier L17-N9960 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L18-N12330.md",
+  "title": "ops_sh candidate dossier L18-N12330 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L19-N21740.md",
+  "title": "ops_sh candidate dossier L19-N21740 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L20-N27076.md",
+  "title": "ops_sh candidate dossier L20-N27076 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L21-N19899.md",
+  "title": "ops_sh candidate dossier L21-N19899 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L22-N18816.md",
+  "title": "ops_sh candidate dossier L22-N18816 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L22-N22450.md",
+  "title": "ops_sh candidate dossier L22-N22450 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L22-N26066.md",
+  "title": "ops_sh candidate dossier L22-N26066 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L22-N5747.md",
+  "title": "ops_sh candidate dossier L22-N5747 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L24-N8156.md",
+  "title": "ops_sh candidate dossier L24-N8156 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L25-N19258.md",
+  "title": "ops_sh candidate dossier L25-N19258 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L25-N20093.md",
+  "title": "ops_sh candidate dossier L25-N20093 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L26-N11025.md",
+  "title": "ops_sh candidate dossier L26-N11025 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L26-N17855.md",
+  "title": "ops_sh candidate dossier L26-N17855 (provisional working read)",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L10-N10572.md",
+  "title": "L10-N10572",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L16-N22118.md",
+  "title": "L16-N22118",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L27-N1187.md",
+  "title": "L27-N1187",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L27-N15105.md",
+  "title": "L27-N15105",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L27-N22312.md",
+  "title": "L27-N22312",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L27-N22697.md",
+  "title": "L27-N22697",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L27-N23150.md",
+  "title": "L27-N23150",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L27-N27558.md",
+  "title": "L27-N27558",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L27-N9808.md",
+  "title": "L27-N9808",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L28-N20626.md",
+  "title": "L28-N20626",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L28-N22988.md",
+  "title": "L28-N22988",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L29-N12980.md",
+  "title": "L29-N12980",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L29-N23842.md",
+  "title": "L29-N23842",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L29-N24862.md",
+  "title": "L29-N24862",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L29-N24910.md",
+  "title": "L29-N24910",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L29-N25622.md",
+  "title": "L29-N25622",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L30-N10652.md",
+  "title": "L30-N10652",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L30-N5450.md",
+  "title": "L30-N5450",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L33-N18287.md",
+  "title": "L33-N18287",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L33-N2459.md",
+  "title": "L33-N2459",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L34-N26836.md",
+  "title": "L34-N26836",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L34-N8043.md",
+  "title": "L34-N8043",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L35-N10673.md",
+  "title": "L35-N10673",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L35-N20498.md",
+  "title": "L35-N20498",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L35-N24020.md",
+  "title": "L35-N24020",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L35-N2465.md",
+  "title": "L35-N2465",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L35-N2631.md",
+  "title": "L35-N2631",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L35-N5309.md",
+  "title": "L35-N5309",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L35-N7530.md",
+  "title": "L35-N7530",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L35-N8512.md",
+  "title": "L35-N8512",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L35-N9217.md",
+  "title": "L35-N9217",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L36-N14337.md",
+  "title": "L36-N14337",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L36-N16585.md",
+  "title": "L36-N16585",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L36-N16965.md",
+  "title": "L36-N16965",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L36-N25354.md",
+  "title": "L36-N25354",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L36-N27357.md",
+  "title": "L36-N27357",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L36-N4765.md",
+  "title": "L36-N4765",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L36-N5138.md",
+  "title": "L36-N5138",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L36-N9381.md",
+  "title": "L36-N9381",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L37-N17388.md",
+  "title": "L37-N17388",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L37-N17833.md",
+  "title": "L37-N17833",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L37-N24889.md",
+  "title": "L37-N24889",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L37-N4754.md",
+  "title": "L37-N4754",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L37-N5043.md",
+  "title": "L37-N5043",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L37-N6076.md",
+  "title": "L37-N6076",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L37-N7052.md",
+  "title": "L37-N7052",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L38-N9134.md",
+  "title": "L38-N9134",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L39-N15151.md",
+  "title": "L39-N15151",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L4-N25503.md",
+  "title": "L4-N25503",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L40-N4441.md",
+  "title": "L40-N4441",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L42-N16424.md",
+  "title": "L42-N16424",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L42-N873.md",
+  "title": "L42-N873",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L42-N9154.md",
+  "title": "L42-N9154",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L44-N14525.md",
+  "title": "L44-N14525",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L44-N16258.md",
+  "title": "L44-N16258",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L44-N22828.md",
+  "title": "L44-N22828",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L45-N14989.md",
+  "title": "L45-N14989",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L45-N21163.md",
+  "title": "L45-N21163",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L45-N21413.md",
+  "title": "L45-N21413",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L45-N4166.md",
+  "title": "L45-N4166",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L46-N23521.md",
+  "title": "L46-N23521",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L46-N5406.md",
+  "title": "L46-N5406",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L47-N26202.md",
+  "title": "L47-N26202",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L48-N18063.md",
+  "title": "L48-N18063",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L49-N895.md",
+  "title": "L49-N895",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L50-N18816.md",
+  "title": "L50-N18816",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L55-N10278.md",
+  "title": "L55-N10278",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L57-N26033.md",
+  "title": "L57-N26033",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L58-N3443.md",
+  "title": "L58-N3443",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L59-N11005.md",
+  "title": "L59-N11005",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L59-N11448.md",
+  "title": "L59-N11448",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L59-N19776.md",
+  "title": "L59-N19776",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L59-N21614.md",
+  "title": "L59-N21614",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L59-N557.md",
+  "title": "L59-N557",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L6-N5374.md",
+  "title": "L6-N5374",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L6-N5700.md",
+  "title": "L6-N5700",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L60-N10309.md",
+  "title": "L60-N10309",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L60-N17154.md",
+  "title": "L60-N17154",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L60-N26229.md",
+  "title": "L60-N26229",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L62-N16811.md",
+  "title": "L62-N16811",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L62-N4855.md",
+  "title": "L62-N4855",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L62-N6036.md",
+  "title": "L62-N6036",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L62-N9554.md",
+  "title": "L62-N9554",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L63-N11857.md",
+  "title": "L63-N11857",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L63-N17168.md",
+  "title": "L63-N17168",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L7-N19201.md",
+  "title": "L7-N19201",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L7-N20520.md",
+  "title": "L7-N20520",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L8-N10861.md",
+  "title": "L8-N10861",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L8-N13193.md",
+  "title": "L8-N13193",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L8-N9298.md",
+  "title": "L8-N9298",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L9-N12281.md",
+  "title": "L9-N12281",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L9-N23934.md",
+  "title": "L9-N23934",
+  "ok": true,
+  "id": null
+ },
+ {
+  "file": "L9-N24830.md",
+  "title": "L9-N24830",
+  "ok": true,
+  "id": null
+ }
+]
